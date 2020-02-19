@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        {% if title %}
+            <title>Our Classes - {{ title }}</title>
+        {% else %}
+            <title>Our Classes</title>
+        {% endif %}
+    </head>
+    <body>
+        {% block content %}{% endblock %}
+    </body>
+</html>
+
+<!-- base html template, which we utilise in template inherticance -->
