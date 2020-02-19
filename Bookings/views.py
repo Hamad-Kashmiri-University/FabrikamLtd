@@ -25,4 +25,4 @@ def home(request):
     return render(request, 'Bookings/home.html', context) # context is the above defined passed to the page
 
 def detail(request):
-    return render(request, 'Bookings/details.html', {'title': 'Booking'})
+    return render(request, 'Bookings/details.html', {'pagetitle': 'Booking'})
