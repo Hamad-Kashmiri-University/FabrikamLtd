@@ -1,10 +1,10 @@
 {% extends "Bookings/base.html" %}
 {% block content %}
     <h1>Booking Home</h1>
-    {% for class in classes %}
+    {% for class in session %}
         <h1>{{ class.title}}</h1>
         <p>Skill Level: {{ class.skill }}</p>
-        <p>Date: {{ class.date }}</p>
+        <p>Company {{ class.company }}</p>
         <p>Empty Spaces: {{ class.spaces }}</p>
     {% endfor %}
 {% endblock content %}
