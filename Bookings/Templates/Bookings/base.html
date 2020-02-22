@@ -10,7 +10,7 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="{% static 'Bookings/main.css' &}">   
+    <link rel="stylesheet" type="text/css" href="{% static 'Bookings/main.css' %}">   
         {% if pagetitle %}
             <title>Our Classes - {{ pagetitle }}</title>
         {% else %}
@@ -21,8 +21,16 @@
         <a href="{% url 'Booking-details' %}">Link to details, take out of base.html</a>  <!-- HREFS are the NAMES in urls.py -->
 
         <a href="{% url 'Bookings' %}">Link to bookings home, take out of base.html</a>
-        <div class = "container-fluid">
-        {% block content %}{% endblock %}
+        <div class = "container">
+            {% if messages %}
+                {% for message in messages %}
+                <div class="alert alert-{{ message.tags }}">
+                    {{ message }}
+                </div>
+                {% endfor %}
+            {% endif %}
+            {% block content %}{% endblock %}
+
         </div>
          <!-- Optional JavaScript -->
         <!-- jQuery first, then Popper.js, then Bootstrap JS -->
