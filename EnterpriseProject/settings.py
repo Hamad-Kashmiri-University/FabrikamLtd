@@ -122,5 +122,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+LOGIN_REDIRECT_URL = '/' # redirect after login to home page
+LOGIN_URL = 'login' #redirect to login if profile accessed while not logged in

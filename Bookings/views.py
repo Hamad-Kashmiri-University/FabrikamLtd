@@ -7,7 +7,8 @@ from .models import Session
 
 def home(request):
     context = {                 # dict with key classes and above list of dicts paired
-        'session': Session.objects.all()  # passing data from Session model in models.py from this directory called in the imports
+        'session': Session.objects.all(),  # passing data from Session model in models.py from this directory called in the imports
+        'pagetitle': "placeholder"
     }
     return render(request, 'Bookings/home.html', context) # context is the above defined passed to the page
 
