@@ -17,6 +17,6 @@ def register(request):
     #checks if post request try to validate the form data, otherwise instantiate empty form
     return render(request, 'users/register.html', {'form': form})
 
-@login_required  #login decorator user must be logged in to view this page   
+@login_required  #login decorator user must be logged in to view this page , this is the reason we dont pass user data as a user must be logged in 
 def profile(request):
     return render(request, 'users/profile.html')

@@ -1,6 +1,8 @@
 {% extends "Bookings/base.html" %}
 {% load crispy_forms_tags %}
 {% block content %}.
-<h1>{{ user.username }}</h1> 
+<h1>{{ user.username }}</h1>
+<img class="img-fluid img-thumbnail" src="{{ user.profile.image.url }}" alt="">
+
 {% endblock %}
 <!-- we can use user.username without passing anything in views because user is built in -->
