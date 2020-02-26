@@ -1,7 +1,6 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
-from .forms import UserRegisterForm
+from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
 from django.contrib.auth.decorators import login_required
 
 def register(request):
@@ -19,4 +18,28 @@ def register(request):
 
 @login_required  #login decorator user must be logged in to view this page , this is the reason we dont pass user data as a user must be logged in 
 def profile(request):
-    return render(request, 'users/profile.html')
+    if request.method == "POST":
+        u_form = UserUpdateForm(request.POST, instance=request.user) # pass in current users info to the forms
+        p_form = ProfileUpdateForm(request.POST, 
+                                   request.FILES,
+                                   instance=request.user.profile)
+        
+        if u_form.is_valid() and p_form.is_valid():
+            u_form.save()
+            p_form.save()
+            messages.success(request, f'Account Updated Successfully') # pop up message for user
+            return redirect("profile")
+    
+    else: 
+        u_form = UserUpdateForm(instance=request.user) # pass in current users info to the forms
+        p_form = ProfileUpdateForm(instance=request.user.profile)
+    
+    context = {
+        'u_form': u_form,
+        'p_form': p_form
+    }
+    return render(request, 'users/profile.html', context)
+
+
+
+
