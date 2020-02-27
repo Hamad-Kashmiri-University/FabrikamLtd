@@ -1,6 +1,10 @@
 {% extends "Bookings/base.html" %}
 {% block content %}
-<h1>Actual Bookings Page</h1>
+<h1>{{ object.title}}</h1>
+<p>Skill Level: {{ object.skill }}</p>
+<p>Company {{ object.company }}</p>
+<p>Empty Spaces: {{ object.spaces }}</p>
+<p>Description: {{ object.description }}</p>
 {% endblock %}
 
 

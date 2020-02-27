@@ -2,7 +2,7 @@
 {% block content %}
     <h1>Booking Home</h1>
     {% for class in session %}
-        <h1>{{ class.title}}</h1>
+        <h1><a href = "{% url 'details' class.id %}">{{ class.title}}</a></h1>
         <p>Skill Level: {{ class.skill }}</p>
         <p>Company {{ class.company }}</p>
         <p>Empty Spaces: {{ class.spaces }}</p>
