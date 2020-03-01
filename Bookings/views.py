@@ -26,8 +26,4 @@ class SessionDetailView(DetailView):
 
 
 
-def detail(request):
-    return render(request, 'Bookings/details.html', {'pagetitle': 'Booking'})
-
-
   

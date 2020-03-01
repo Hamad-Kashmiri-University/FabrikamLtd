@@ -1,0 +1,27 @@
+{% extends "Bookings/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+<h1>PROOF THIS IS TEACHER PROFILE INSTEAD</h1>
+<div class = "container">
+    <div class = "row">
+        <div class = "col col-md-4"> 
+            <h1>{{ user.username }}</h1>
+            <img class="img-fluid img-thumbnail" src="{{ user.profile.image.url }}" alt="" height="100" width="100">
+        </div> 
+        <div class = "col">
+        <form method="POST" enctype="multipart/form-data"><!-- enctype is used for images saving-->
+            {% csrf_token %}
+            <fieldset class = 'form-group'>
+                <legend class = "border-bottom mb-4">Profile Information</legend>
+                {{ u_form|crispy }}
+                {{ p_form|crispy }}<!-- we passing in 2 forms so need 2-->
+            </fieldset>
+            <div class = "form-group">
+                <button class = "btn btn-outline-info" type = "submit">Update</button>
+            </div>
+        </form>
+        </div>
+    </div> 
+</div>
+{% endblock %}
+<!-- we can use user.username without passing anything in views because user is built in -->
