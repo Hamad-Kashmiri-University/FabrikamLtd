@@ -1,7 +1,10 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from .models import Session 
-from django.views.generic import ListView, DetailView
+from .models import Session, IndividualSession, Booking 
+from django.views.generic import ListView, DetailView, CreateView
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
+from .forms import BookingForm
 #handles traffic takes req and returns httpresponse
 #calsses is dummy dict for testing
 
@@ -19,11 +22,31 @@ class SessionListView(ListView):
     context_object_name = 'session'
     ordering = ['-spaces'] # orders by descending spaces
 
-class SessionDetailView(DetailView):
+'''class SessionDetailView(DetailView):
     model = Session
     template_name='Bookings/details.html'
-    context_object_name = 'session'
+    context_object_name = 'session
 
 
+   class SessionCreateView(CreateView):
+    model = Session
+    fields = ['skill', 'description', 'spaces', 'title', 'teacher']'''
+
+class BookingCreateView(CreateView):
+    model = Booking
+    form_class = BookingForm
+    template_name = 'Bookings/details.html'
+    
+
+    def form_valid(self, form):
+        booking = form.save(commit = False)
+        booking.user = User.objects.get(user=self.request.user)
+        booking.save()  
+        f.save()
+        return HttpResponseRedirect(self.get_success_url())
+
+
+
+  
 
   

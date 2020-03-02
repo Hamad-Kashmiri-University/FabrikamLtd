@@ -1,10 +1,18 @@
 {% extends "Bookings/base.html" %}
+{% load crispy_forms_tags %}
 {% block content %}
-<h1>{{ object.title}}</h1>
-<p>Skill Level: {{ object.skill }}</p>
-<p>Company {{ object.company }}</p>
-<p>Empty Spaces: {{ object.spaces }}</p>
-<p>Description: {{ object.description }}</p>
+<div class = content-section>
+    <form method="POST">
+        {% csrf_token %}
+        <fieldset class = 'form-group'>
+            <legend class = "border-bottom mb-4">Test</legend>
+            {{ form|crispy }}
+        </fieldset>
+        <div class = "form-group">
+            <button class = "btn btn-outline-info" type = "submit">Test</button>
+        </div>
+    </form>
+</div>
 {% endblock %}
 
 
