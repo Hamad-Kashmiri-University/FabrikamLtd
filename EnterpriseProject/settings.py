@@ -11,7 +11,10 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
+import mimetypes
 
+mimetypes.add_type("image/svg+xml", ".svg", True)
+mimetypes.add_type("image/svg+xml", ".svgz", True)
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -33,6 +36,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'Bookings.apps.BookingsConfig',    # path to apps in bookings
     'users.apps.UsersConfig',
+    'home.apps.HomeConfig',
     'crispy_forms',
     'django.contrib.admin',
     'django.contrib.auth',

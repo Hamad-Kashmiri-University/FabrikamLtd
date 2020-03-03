@@ -22,15 +22,7 @@ class SessionListView(ListView):
     context_object_name = 'session'
     ordering = ['-spaces'] # orders by descending spaces
 
-'''class SessionDetailView(DetailView):
-    model = Session
-    template_name='Bookings/details.html'
-    context_object_name = 'session
 
-
-   class SessionCreateView(CreateView):
-    model = Session
-    fields = ['skill', 'description', 'spaces', 'title', 'teacher']'''
 
 class BookingCreateView(CreateView):
     model = Booking

@@ -1,0 +1,325 @@
+@import url(//db.onlinewebfonts.com/c/06d1b1518a180e5a9cca2c23401ec40a?family=Circular+Std+Bold);
+@import url(//db.onlinewebfonts.com/c/2d98f490df6dc039774b101701ce3aba?family=Circular+Std+Book);
+
+
+@font-face {
+    font-family: "CircularBOLD";
+    src: url("/fonts/CircularStd-Bold.otf");
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: "CircularBOOK";
+    src: url("/fonts/CircularStd-Book.otf");
+    font-style: normal;
+}
+
+/*----------global----------*/
+
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+}
+
+html {
+    font-family: CircularBOLD, sans-serif;
+    font-family: CircularBOOK, sans-serif;
+}
+
+body {
+    width: 100%;
+    margin: 0 auto;
+    overflow-x: hidden;
+}
+
+h1 {
+    font-size: 48px;
+    color: #622CCF;
+    font-weight: 400;
+}
+
+h3 {
+    font-size: 24px;
+}
+
+p {
+    font-size: 16px;
+}
+
+.btnOutline {
+    display: block;
+    text-decoration: none;
+    color: #622CCF;
+    border: 2px solid #622CCF;
+    border-radius: 50px;
+    width: 175px;
+    height: 40px;
+    line-height: 37px;
+    text-align: center;
+    margin-top: 30px;
+    font-family: CircularBOLD;
+}
+
+.btnFilled {
+    display: block;
+    text-decoration: none;
+    color: white;
+    background-color: #622CCF;
+    border-radius: 50px;
+    width: 175px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    margin-top: 30px;
+
+}
+
+/*----------nav----------*/
+
+nav {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px;
+}
+
+nav a {
+    text-decoration: none;
+    color: white;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+nav a img {
+    padding: 10px;
+}
+
+header .nav-link:hover {
+    color: grey;
+}
+
+header .nav-item {
+    padding: 10px;
+}
+
+.sticky {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    z-index: 9999;
+    transition: all 0.4s ease 0s;
+}
+
+/*----------header----------*/
+
+header {
+    height: 1000px;
+    min-height: 1000px;
+    padding: 0 5%;
+    background-image: url(../image/Mask\ Group\ 16.svg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: bottom right;
+    margin-bottom: 300px;
+
+}
+
+header h1 {
+    width: 40%;
+    margin: 4em 0 1em 0;
+}
+
+
+
+/*----------team----------*/
+
+.team {
+    text-align: center;
+    margin: 1em 0 20em 0;
+    padding: 0 5%;
+    background-image: url(../image/Rectangle\ 555.png);
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+
+.team h1 {
+    width: 50%;
+    margin: 0 auto 50px auto;
+}
+
+.members {
+    display: flex;
+    justify-content: center;
+}
+
+.person {
+    margin: 0 30px;
+    color: #622CCF;
+
+}
+
+.person h3 {
+    margin-top: 20px;
+}
+
+/*----------about----------*/
+
+.about {
+    padding: 0 5%;
+    background-image: url(../image/bg-2.svg);
+    background-repeat: no-repeat;
+    background-position: left center;
+    background-size: 40%;
+    height: 1000x;
+    min-height: 1000px;
+}
+
+.about h1 {
+    margin-bottom: 30px;
+    padding-top: 200px;
+    text-align: right;
+}
+
+/*----------call to action----------*/
+
+.callToAction {
+    text-align: center;
+    padding: 20em 5% 20em 5%;
+}
+
+.callToAction h1,
+.callToAction a {
+    display: inline-block;
+    margin: 0 60px;
+    vertical-align: middle;
+}
+
+.callToAction .btnFilled {}
+
+/*----------footer----------*/
+
+footer {
+    padding: 0 5%;
+    margin-bottom: 40px;
+    color: #622CCF;
+}
+
+.footer p,
+.footerPages {
+    display: inline-block;
+}
+
+.footerPages {
+    float: right;
+}
+
+.footerPages a {
+    text-decoration: none;
+    font-weight: 300;
+    color: #4A026D;
+    margin-left: 30px;
+    font-weight: 600;
+}
+
+/*----------responsive----------*/
+
+@media only screen and (max-width: 1000px) {
+    header {
+        height: 1600px;
+        min-height: 1600px;
+        background-image: url('../image/mobile-bg-1.svg');
+        background-repeat: no-repeat;
+        background-position: bottom right;
+        background-size: contain;
+    }
+
+    header h1 {
+        width: 100%;
+    }
+
+    .team {
+        margin: 3em 0 3em 0;
+        background-image: url(../image/Rectangle\ 555.png);
+        background-position: top;
+    }
+
+    .team h1 {
+        width: 100%;
+    }
+
+    .about {
+        padding: 0 5%;
+        background-image: url(../image/mobile-bg-2.svg);
+        background-size: contain;
+        background-size: 80%;
+        height: 900x;
+        min-height: 900px;
+        overflow-y: visible;
+    }
+
+    .about h1 {
+        padding-top: 1000px;
+    }
+
+    .callToAction {
+        margin-top: 10em;
+        padding: 15em 5% 15em 5%;
+        background-size: 70%;
+    }
+
+    .callToAction h1,
+    .callToAction a {
+        margin-bottom: 30px;
+    }
+
+    footer {
+        text-align: center;
+    }
+
+    .footerPages {
+        visibility: hidden;
+    }
+
+    footer p,
+    .footerPages {
+        display: block;
+    }
+    nav a {
+        color: black;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    header {
+        height: 1300px;
+        min-height: 1300px;
+    }
+
+    header h1 {
+        margin: 2em 0 0 0;
+    }
+
+    .about h1 {
+        padding-top: 800px;
+    }
+
+    .members {
+        flex-direction: column;
+    }
+
+    .person {
+        margin-top: 30px;
+    }
+
+    nav a {
+        color: black;
+    }
+}

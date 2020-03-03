@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="37" height="37" viewBox="0 0 37 37">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: url(#linear-gradient);
+      }
+
+      .cls-2, .cls-3 {
+        fill: #fff;
+      }
+
+      .cls-3 {
+        opacity: 0.16;
+      }
+    </style>
+    <linearGradient id="linear-gradient" x1="0.5" x2="0.5" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#61048e"/>
+      <stop offset="1" stop-color="#591bd5"/>
+    </linearGradient>
+  </defs>
+  <g id="Group_122" data-name="Group 122" transform="translate(-318 -32)">
+    <circle id="Ellipse_49" data-name="Ellipse 49" class="cls-1" cx="18.5" cy="18.5" r="18.5" transform="translate(318 32)"/>
+    <rect id="Rectangle_558" data-name="Rectangle 558" class="cls-2" width="17" height="2" rx="1" transform="translate(329 50)"/>
+    <rect id="Rectangle_585" data-name="Rectangle 585" class="cls-3" width="17" height="2" rx="1" transform="translate(329 49)"/>
+    <rect id="Rectangle_559" data-name="Rectangle 559" class="cls-2" width="20" height="2" rx="1" transform="translate(326 54)"/>
+    <rect id="Rectangle_586" data-name="Rectangle 586" class="cls-3" width="20" height="2" rx="1" transform="translate(326 53)"/>
+    <rect id="Rectangle_584" data-name="Rectangle 584" class="cls-3" width="13" height="2" rx="1" transform="translate(333 45)"/>
+    <rect id="Rectangle_560" data-name="Rectangle 560" class="cls-2" width="13" height="2" rx="1" transform="translate(333 46)"/>
+  </g>
+</svg>
