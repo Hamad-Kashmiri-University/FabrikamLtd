@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from .models import Session, IndividualSession, Booking 
-from django.views.generic import ListView, DetailView, CreateView
+from django.views.generic import ListView, DetailView, CreateView, FormView
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from .forms import BookingForm
@@ -21,21 +21,21 @@ class SessionListView(ListView):
     template_name='Bookings/home.html' # what the browser looks for in class views
     context_object_name = 'session'
     ordering = ['-spaces'] # orders by descending spaces
-
+    
 
 
 class BookingCreateView(CreateView):
     model = Booking
     form_class = BookingForm
+    #fields = ['individualsession', 'additionalrequirements']
     template_name = 'Bookings/details.html'
-    
-
+ 
     def form_valid(self, form):
-        booking = form.save(commit = False)
-        booking.user = User.objects.get(user=self.request.user)
-        booking.save()  
-        f.save()
-        return HttpResponseRedirect(self.get_success_url())
+        print(self.request.user.username)
+        form.instance.user = self.request.user
+        #BookingForm.instance.individualsession = self.request.individualsession
+        #booking.user = User.objects.get(user=self.request.user)
+        return super().form_valid(form)
 
 
 

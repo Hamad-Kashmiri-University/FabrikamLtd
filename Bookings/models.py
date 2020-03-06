@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 from django.contrib.auth.models import User
 
 class Session(models.Model):
@@ -11,16 +12,24 @@ class Session(models.Model):
 
     def __str__(self):
         return self.title 
+       
+
     
 class IndividualSession(models.Model):
     datetime = models.DateTimeField()
     session = models.ForeignKey(Session, on_delete = models.CASCADE)
 
     def __str__(self):
-        return f'{self.session.title} Session'
+        return f'{self.datetime}'
 
 class Booking(models.Model):
-    individualsession = models.ForeignKey(IndividualSession, on_delete = models.CASCADE)
+    individualsession = models.ForeignKey(IndividualSession, on_delete = models.CASCADE, null = True)
     additionalrequirements = models.TextField()
-    user = models.OneToOneField(User, on_delete=models.CASCADE) # one to one relationship with a user
+    user = models.ForeignKey(User, on_delete=models.CASCADE) # one to one relationship with a user
 
+    def __str__(self):
+        return f'{self.user} Booking'
+            
+            
+    def get_absolute_url(self):
+        return reverse('profile')
