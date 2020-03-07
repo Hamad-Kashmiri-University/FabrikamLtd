@@ -1,10 +1,12 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .models import Session, IndividualSession, Booking 
 from django.views.generic import ListView, DetailView, CreateView, FormView
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from .forms import BookingForm
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib import messages
 #handles traffic takes req and returns httpresponse
 #calsses is dummy dict for testing
 
@@ -24,7 +26,7 @@ class SessionListView(ListView):
     
 
 
-class BookingCreateView(CreateView):
+class BookingCreateView(LoginRequiredMixin, CreateView):
     model = Booking
     form_class = BookingForm
     #fields = ['individualsession', 'additionalrequirements']
@@ -37,8 +39,23 @@ class BookingCreateView(CreateView):
         #booking.user = User.objects.get(user=self.request.user)
         return super().form_valid(form)
 
+@login_required
+def BookingView(request, pk):
+    if request.method == "POST":
+        print(pk)
+        form =  BookingForm(request.POST)
+        form.fields["individualsession"].queryset = IndividualSession.objects.all().filter(session__pk=pk)
+        form.instance.user = request.user
+        if form.is_valid():
+            form.save()
+            messages.success(request, f'Booking Successful')
+            return redirect('profile')
+        
+    else:
+        form = BookingForm()
+        form.fields["individualsession"].queryset = IndividualSession.objects.all().filter(session__pk=pk)#DYNAMIC FILTERING
 
-
-  
+    return render(request, "Bookings/details.html", {'form': form})
+    
 
   
