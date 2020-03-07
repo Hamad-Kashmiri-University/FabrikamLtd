@@ -8,7 +8,7 @@ class Session(models.Model):
     spaces = models.IntegerField()
     title = models.CharField(max_length = 100)
     company = models.CharField(max_length = 100) 
-    teacher = models.ForeignKey(User, models.SET_NULL, blank = True, null = True) # foreign key user THIS WILL BE DELETED BECAUSE SESSION FK GOES IN USER
+    teacher = models.ForeignKey(User, on_delete=models.CASCADE) # foreign key user THIS WILL BE DELETED BECAUSE SESSION FK GOES IN USER
 
     def __str__(self):
         return self.title 

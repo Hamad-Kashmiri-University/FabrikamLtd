@@ -6,7 +6,7 @@ from .models import *
 class BookingForm(forms.ModelForm):
     #times = IndividualSession.objects.values_list('datetime', flat = True)
     #available = forms.ModelChoiceField(queryset=times)
-    #individualsession = forms.ModelChoiceField(queryset=IndividualSession.objects.filter(session__pk=1))
+    individualsession = forms.ModelChoiceField(queryset=IndividualSession.objects.all())
     
     class Meta:
         model = Booking
