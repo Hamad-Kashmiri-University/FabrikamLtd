@@ -52,6 +52,7 @@ def profile(request):
     return render(request, 'users/profile.html', context)
 
 #same as user profile in terms of form however different stuff overall page
+@login_required
 def teacherprofile(request):
     if request.method == "POST":
         u_form = UserUpdateForm(request.POST, instance=request.user) # pass in current users info to the forms

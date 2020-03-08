@@ -8,7 +8,7 @@ class Session(models.Model):
     spaces = models.IntegerField()
     title = models.CharField(max_length = 100)
     company = models.CharField(max_length = 100) 
-    teacher = models.ForeignKey(User, on_delete=models.CASCADE) # foreign key user THIS WILL BE DELETED BECAUSE SESSION FK GOES IN USER
+    teacher = models.ForeignKey(User, on_delete=models.CASCADE, default = 2) # foreign key user THIS WILL BE DELETED BECAUSE SESSION FK GOES IN USER
 
     def __str__(self):
         return self.title 
@@ -18,9 +18,10 @@ class Session(models.Model):
 class IndividualSession(models.Model):
     datetime = models.DateTimeField()
     session = models.ForeignKey(Session, on_delete = models.CASCADE)
+    isbooked = models.BooleanField(default=False)
 
     def __str__(self):
-        return f'{self.datetime}'
+        return f'{self.session.title} at {self.datetime}'
 
 class Booking(models.Model):
     individualsession = models.ForeignKey(IndividualSession, on_delete = models.CASCADE, null = True)
