@@ -24,7 +24,7 @@ class SessionListView(ListView):
     template_name='Bookings/home.html' # what the browser looks for in class views
     context_object_name = 'session'
     ordering = ['-spaces'] # orders by descending spaces
-    
+    paginate_by = 4         #pagination 
 
 
 class BookingCreateView(LoginRequiredMixin, CreateView):
