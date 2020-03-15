@@ -3,8 +3,11 @@ from django.contrib import messages
 from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import LoginView
+from Bookings.models import Booking, Session, IndividualSession 
+from .models import Profile
+from datetime import datetime, timedelta
 
-
+tmrtime = datetime.now() + timedelta(hours = 24)#used in filtering bookings for profile
 def CustomLoginView(LoginView):
     if request.method == "POST":
         form = authentication_form(request.POST, instance=request.user)
@@ -47,8 +50,10 @@ def profile(request):
     
     context = {
         'u_form': u_form,
-        'p_form': p_form
-    }
+        'p_form': p_form,
+        'bookings': Booking.objects.all().filter(user = request.user, individualsession__sessiontime__gt = tmrtime)
+        # dynamic filtering above using foreign key attrs 
+     }
     return render(request, 'users/profile.html', context)
 
 #same as user profile in terms of form however different stuff overall page
@@ -74,6 +79,8 @@ def teacherprofile(request):
         'u_form': u_form,
         'p_form': p_form,
         'pagetitle': 'Teacher'
+        
+
     }
     return render(request, 'users/teacherprofile.html', context)
 

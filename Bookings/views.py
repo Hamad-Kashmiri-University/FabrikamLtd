@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from .models import Session, IndividualSession, Booking 
+from .models import Booking, Session, IndividualSession
 from django.views.generic import ListView, DetailView, CreateView, FormView
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User

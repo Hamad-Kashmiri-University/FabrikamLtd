@@ -16,12 +16,12 @@ class Session(models.Model):
 
     
 class IndividualSession(models.Model):
-    datetime = models.DateTimeField()
+    sessiontime = models.DateTimeField()
     session = models.ForeignKey(Session, on_delete = models.CASCADE)
     isbooked = models.BooleanField(default=False)
 
     def __str__(self):
-        return f'{self.session.title} at {self.datetime}'
+        return f'{self.session.title} at {self.sessiontime}'
 
 class Booking(models.Model):
     individualsession = models.ForeignKey(IndividualSession, on_delete = models.CASCADE, null = True)
