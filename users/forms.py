@@ -2,6 +2,9 @@ from django import forms
 from django.contrib.auth.models import User  # import user
 from django.contrib.auth.forms import UserCreationForm #import usercreationform
 from .models import Profile
+from Bookings.models import Session, IndividualSession
+from django.contrib.admin import widgets    
+from datetimepicker.widgets import DateTimePicker                                   
 
 
 class UserRegisterForm(UserCreationForm): # add email field
@@ -26,3 +29,9 @@ class ProfileUpdateForm(forms.ModelForm):
     class Meta:
         model = Profile
         fields = ['image']
+
+class CreateSessionForm(forms.ModelForm):
+    sessiontime = forms.SplitDateTimeField(widget=forms.SplitDateTimeWidget(), label="Choose Date (DD-MM-YYYY) and Time (HH:MM)")
+    class Meta:
+        model = IndividualSession
+        fields = ['sessiontime', 'session']

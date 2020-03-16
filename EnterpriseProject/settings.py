@@ -38,12 +38,16 @@ INSTALLED_APPS = [
     'users.apps.UsersConfig',
     'home.apps.HomeConfig',
     'crispy_forms',
+    'bootstrap_datepicker_plus',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'bootstrap4',
+    'datetimepicker',
+
 ]
 
 MIDDLEWARE = [
@@ -76,7 +80,9 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'EnterpriseProject.wsgi.application'
 
-
+BOOTSTRAP4 = {
+    'include_jquery': True, # inc jquery in this app
+}
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
@@ -114,8 +120,21 @@ LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'UTC'
 
-DATETIME_FORMAT = '%Y-%m-%d %H:%M'
+DATE_INPUT_FORMATS = (
+    '%d.%m.%Y', '%d.%m.%Y', '%d.%m.%y',  # '25.10.2006', '25.10.2006', '25.10.06'
+    '%d-%m-%Y', '%d/%m/%Y', '%d/%m/%y',  # '25-10-2006', '25/10/2006', '25/10/06'
+    '%d %b %Y',  # '25 Oct 2006', 
+    '%d %B %Y',  # '25 October 2006', 
+)
 
+DATE_FORMAT = 'j F Y'
+TIME_FORMAT = 'H:i'
+DATETIME_FORMAT = 'j F Y H:i'
+YEAR_MONTH_FORMAT = 'F Y'
+MONTH_DAY_FORMAT = 'j F'
+SHORT_DATE_FORMAT = 'j N Y'
+SHORT_DATETIME_FORMAT = 'j N Y H:i'
+FIRST_DAY_OF_WEEK = 1
 USE_I18N = True
 
 USE_L10N = False
@@ -133,7 +152,7 @@ MEDIA_URL = '/media/'  #url to the above file
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
-LOGIN_REDIRECT_URL = '/' # redirect after login to home page
+LOGIN_REDIRECT_URL = 'profile' # redirect after login to home page
 LOGIN_URL = 'login' #redirect to login if profile accessed while not logged in
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'

@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
+from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm, CreateSessionForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import LoginView
 from Bookings.models import Booking, Session, IndividualSession 
@@ -59,29 +59,51 @@ def profile(request):
 #same as user profile in terms of form however different stuff overall page
 @login_required
 def teacherprofile(request):
+    if not request.user.profile.is_teacher:
+        return redirect("profile")
+    u_form = UserUpdateForm(instance=request.user) # pass in current users info to the forms
+    p_form = ProfileUpdateForm(instance=request.user.profile)
+    newsession_form = CreateSessionForm()
     sessionlist = IndividualSession.objects.all().filter(session__teacher = request.user).order_by('id')
     bookinglist = Booking.objects.all().filter(individualsession__session__teacher = request.user).order_by('individualsession')
     print(bookinglist)
     print(sessionlist)
-    if request.method == "POST":
-        u_form = UserUpdateForm(request.POST, instance=request.user) # pass in current users info to the forms
-        p_form = ProfileUpdateForm(request.POST, 
-                                   request.FILES,
-                                   instance=request.user.profile)
+    if request.method == "POST": 
+        if 'profileupdateform' in request.POST:
+            u_form = UserUpdateForm(request.POST, instance=request.user) # pass in current users info to the forms
+            p_form = ProfileUpdateForm(request.POST, 
+                                    request.FILES,
+                                    instance=request.user.profile)
+            
+            if u_form.is_valid() and p_form.is_valid():
+                u_form.save()
+                p_form.save()
+                messages.success(request, f'Account Updated Successfully') # pop up message for user
+                return redirect("profile")
+       
+        # elif statement to separate post reqs below handles delete functionality
+        elif 'pk' in request.POST:
+            print(request.POST['pk'])
+            print(Booking.objects.all().filter(pk=1))
+            Booking.objects.all().filter(pk=request.POST['pk']).delete()
+            return redirect('profile')
         
-        if u_form.is_valid() and p_form.is_valid():
-            u_form.save()
-            p_form.save()
-            messages.success(request, f'Account Updated Successfully') # pop up message for user
-            return redirect("profile")
-    
+        elif 'createsession' in request.POST:
+            newsession_form = CreateSessionForm(request.POST)
+            if newsession_form.is_valid():
+                newsession_form.save()
+                messages.success(request, f'Session Created Successfully')
+                return redirect('profile')
+   
     else: 
         u_form = UserUpdateForm(instance=request.user) # pass in current users info to the forms
         p_form = ProfileUpdateForm(instance=request.user.profile)
+        newsession_form = CreateSessionForm()
     
     context = {
         'u_form': u_form,
         'p_form': p_form,
+        'newsession_form': newsession_form, 
         'pagetitle': 'Teacher',
         'booking': bookinglist,
         'session': sessionlist
@@ -89,6 +111,4 @@ def teacherprofile(request):
 
     }
     return render(request, 'users/teacherprofile.html', context)
-
-
 
