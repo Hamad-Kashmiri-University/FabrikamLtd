@@ -7,10 +7,12 @@ from django.contrib.auth.models import User
 from .forms import BookingForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
+from datetime import *
 
 #handles traffic takes req and returns httpresponse
 #calsses is dummy dict for testing
 
+tmrtime = datetime.now() + timedelta(hours = 24)#used in filtering avail
 
 def home(request):
     context = {                 # dict with key classes and above list of dicts paired
@@ -44,7 +46,7 @@ class BookingCreateView(LoginRequiredMixin, CreateView):
 def BookingView(request, pk):
     if request.method == "POST":
         form =  BookingForm(request.POST)
-        form.fields["individualsession"].queryset = IndividualSession.objects.all().filter(session__pk=pk, isbooked=False) # filter by session instance pk and if not booked
+        form.fields["individualsession"].queryset = IndividualSession.objects.all().filter(session__pk=pk, isbooked=False, sessiontime__gt = tmrtime) # filter by session instance pk and if not booked and if time within 24 hours
         form.instance.user = request.user    #set logged user to user   
         if form.is_valid():
             bookcount = Booking.objects.all().filter(individualsession__pk=form.instance.individualsession.pk).count()#perform full check here count bookings and compare to session spaces relational comparison
@@ -67,7 +69,7 @@ def BookingView(request, pk):
 
     else:
         form = BookingForm()
-        form.fields["individualsession"].queryset = IndividualSession.objects.all().filter(session__pk=pk, isbooked=False)#DYNAMIC FILTERING
+        form.fields["individualsession"].queryset = IndividualSession.objects.all().filter(session__pk=pk, isbooked=False,  sessiontime__gt = tmrtime)#DYNAMIC FILTERING
 
     return render(request, "Bookings/details.html", {'form': form})
     

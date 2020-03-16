@@ -22,6 +22,17 @@
         </form>
         </div>
     </div> 
+    <div class = "container">
+        <h1>Hello</h1> 
+        {% for each in session %}
+            <p>{{ each }} </p> 
+            {% for item in booking %}
+                {% if item.individualsession.id == each.id %}
+                    <p> {{ item }} </p>
+                {% endif %}    
+            {% endfor %}    
+        {% endfor %}
+    </div>
 </div>
 {% endblock %}
 <!-- we can use user.username without passing anything in views because user is built in -->

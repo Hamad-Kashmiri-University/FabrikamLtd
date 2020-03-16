@@ -59,6 +59,10 @@ def profile(request):
 #same as user profile in terms of form however different stuff overall page
 @login_required
 def teacherprofile(request):
+    sessionlist = IndividualSession.objects.all().filter(session__teacher = request.user).order_by('id')
+    bookinglist = Booking.objects.all().filter(individualsession__session__teacher = request.user).order_by('individualsession')
+    print(bookinglist)
+    print(sessionlist)
     if request.method == "POST":
         u_form = UserUpdateForm(request.POST, instance=request.user) # pass in current users info to the forms
         p_form = ProfileUpdateForm(request.POST, 
@@ -78,7 +82,9 @@ def teacherprofile(request):
     context = {
         'u_form': u_form,
         'p_form': p_form,
-        'pagetitle': 'Teacher'
+        'pagetitle': 'Teacher',
+        'booking': bookinglist,
+        'session': sessionlist
         
 
     }

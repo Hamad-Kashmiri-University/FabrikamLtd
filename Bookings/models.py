@@ -29,7 +29,7 @@ class Booking(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE) # one to one relationship with a user
 
     def __str__(self):
-        return f'{self.user} Booking'
+        return f'{self.user} Booking for {self.individualsession}'
             
             
     def get_absolute_url(self):
