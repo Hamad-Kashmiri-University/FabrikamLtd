@@ -64,7 +64,7 @@ def teacherprofile(request):
     u_form = UserUpdateForm(instance=request.user) # pass in current users info to the forms
     p_form = ProfileUpdateForm(instance=request.user.profile)
     newsession_form = CreateSessionForm()
-    sessionlist = IndividualSession.objects.all().filter(session__teacher = request.user).order_by('id')
+    sessionlist = IndividualSession.objects.all().filter(session__teacher = request.user).order_by('sessiontime', 'id')
     bookinglist = Booking.objects.all().filter(individualsession__session__teacher = request.user).order_by('individualsession')
     print(bookinglist)
     print(sessionlist)

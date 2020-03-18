@@ -13,8 +13,10 @@
     font-family: "CircularBOOK";
     src: url("/fonts/CircularStd-Book.otf");
     font-style: normal;
-}
+}   
 
+
+  
 /*----------global----------*/
 
 * {
@@ -323,3 +325,4 @@ footer {
         color: black;
     }
 }
+
