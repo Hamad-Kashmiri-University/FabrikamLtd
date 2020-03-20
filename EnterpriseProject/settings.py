@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'Bookings.apps.BookingsConfig',    # path to apps in bookings
     'users.apps.UsersConfig',
     'home.apps.HomeConfig',
+    'Contact.apps.ContactConfig',
     'crispy_forms',
     'bootstrap_datepicker_plus',
     'django.contrib.admin',
