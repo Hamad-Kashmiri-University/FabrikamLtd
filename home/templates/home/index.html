@@ -1,92 +1,247 @@
 {% extends "Bookings/homebase.html"%}
-   {% block content %}
-   {% load static %}
-   {% block css %}
-   <link rel="stylesheet" type="text/css" href="{% static 'Bookings/home.css' %}">
-   {% endblock css %}
-   <header>
-        <nav class="navbar navbar-expand-lg">
-            <a class="navbar-brand" href="./">
-                <img src="{% static 'image/logo_transparent.png' %}" class="d-inline-block align-top" alt=""
-                    style="width:120px;">
-                <span class="navtext"></span>
-            </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <img src="{% static 'image/navbar-icon.svg' %}" style="width: 50px;">
-            </button>
-            <div class=" collapse navbar-collapse" id="navbarNav">
-                <div class="mr-auto">
+{% block content %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" type="text/css" href="{% static 'Bookings/home.css' %}">
+{% endblock css %}
+<header>
+    <nav class="navbar navbar-expand-lg">
+        <a class="navbar-brand" href="./">
+            <img src="{% static 'image/logo_transparent.png' %}" class="d-inline-block align-top" alt=""
+                style="width:120px;">
+            <span class="navtext"></span>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <img src="{% static 'image/navbar-icon.svg' %}" style="width: 50px;">
+        </button>
+        <div class=" collapse navbar-collapse" id="navbarNav">
+            <div class="mr-auto">
+            </div>
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="{% url 'Bookings' %}">Sessions</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./about">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./contact">Contact</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./login">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'register' %}">Register</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <h1>Learn new skills and technologies with our UK based training
+        events.</h1>
+    <a href=" #" class="btnOutline">Learn More</a>
+</header>
+
+
+<!-- featured training sessions -->
+
+<div class="service_area">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="section_title text-center mb-65">
+                    <h3>Featured <br>
+                        Training Sessions</h3>
                 </div>
-                <ul class="navbar-nav">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="{% url 'Bookings' %}">Our Sessions</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="./about">about</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="./contact">contact</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="./login">login</a>
-                    </li>
-                </ul>
+                <br>
+                <br>
             </div>
-        </nav>
-        <h1>Learn new skills and technologies with our UK based training
-            events.</h1>
-        <a href=" #" class="btnOutline">Learn More</a>
-    </header>
-
-
-    <div class="team">
-        <h1>Fabrikam Technical Training has trained IT professionals that will teach you all you need to know about your
-            chosen subject. </h1>
-        <div class="members">
-            <div class="person">
-                <img src="{% static 'image/poki.png' %}" alt="profile icon">
-                <h3>Imane Anys</h3>
-                <p>4 years of UI/UX</p>
+        </div>
+        <div class="row">
+            <div class="col-xl-4 col-md-4">
+                <div class="single_service text-center">
+                    <div class="icon">
+                        <img src="{% static 'image/c-35.png' %}" alt="">
+                    </div>
+                    <h3>C++</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor.</p>
+                </div>
             </div>
-            <div class="person">
-                <img src="{% static 'image/hugh.png' %}" alt="profile icon">
-                <h3>Rudy Pantoja</h3>
-                <p>6 years of C++ Knowledge</p>
+            <div class="col-xl-4 col-md-4">
+                <div class="single_service text-center">
+                    <div class="icon">
+                        <img src="{% static 'image/python-19.png' %}" alt="">
+                    </div>
+                    <h3>Python</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor.</p>
+                </div>
             </div>
-            <div class="person">
-                <img src="{% static 'image/moe.png' %}" alt="profile icon">
-                <h3>Hammoudi Abdalrhman</h3>
-                <p>9 years of IT Technical Skills</p>
-            </div>
-            <div class="person">
-                <img src="{% static 'image/xqc.png' %}" alt="profile icon">
-                <h3>Felix Lengyel</h3>
-                <p>7 years as Game Desginer</p>
-            </div>
-            <div class="person">
-                <img src="{% static 'image/rebecca.png' %}" alt="profile icon">
-                <h3>Rebecca Black</h3>
-                <p>7 years as Software Dev</p>
+            <div class="col-xl-4 col-md-4">
+                <div class="single_service text-center">
+                    <div class="icon">
+                        <img src="{% static 'image/javascript-17.png' %}" alt="">
+                    </div>
+                    <h3>JavaScript</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor.</p>
+                </div>
             </div>
         </div>
     </div>
+</div>
 
-    <div class="about">
-        <h1>View some of our training sessions below</h1>
-    </div>
+<!-- about area -->
 
+<div class="about">
 
-    <div class="callToAction">
-        <h1>Sign up Today</h1>
-        <a href="#" class="btnFilled">Get Started</a>
-    </div>
+</div>
 
-    <footer>
-        <div class="footerPages">
-            <a href="#">Home</a>
-            <a href="#">About</a>
-            <a href="#">Contact</a>
+<!-- review area -->
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            <h1>Recent Training Session <br> Reviews</h1>
+            <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                <!-- Carousel indicators -->
+                <ol class="carousel-indicators">
+                    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                    <li data-target="#myCarousel" data-slide-to="1"></li>
+                    <li data-target="#myCarousel" data-slide-to="2"></li>
+                </ol>
+                <!-- Wrapper for carousel items -->
+                <div class="carousel-inner">
+                    <div class="item carousel-item active">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="media">
+                                    <div class="media-left d-flex mr-3">
+                                        <img src="{% static 'image/poki.png' %}" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="media-body">
+                                        <div class="testimonial">
+                                            <p>Lorem ipsum dolor sit amet, consec adipiscing elit. Nam eusem
+                                                scelerisque tempor, varius quam luctus dui. Mauris magna metus
+                                                nec.
+                                            </p>
+                                            <p class="overview"><b>Imane Anys</b>, C++ Traning Course</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="media">
+                                    <div class="media-left d-flex mr-3">
+                                        <img src="{% static 'image/moe.png' %}" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="media-body">
+                                        <div class="testimonial">
+                                            <p>Vestibulum quis quam ut magna consequat faucibus. Pellentesque
+                                                eget
+                                                mi suscipit tincidunt. Utmtc tempus dictum.</p>
+                                            <p class="overview"><b>Moe Abdalrhman</b>, Python Traning Course
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item carousel-item">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="media">
+                                    <div class="media-left d-flex mr-3">
+                                        <img src="{% static 'image/xqc.png' %}" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="media-body">
+                                        <div class="testimonial">
+                                            <p>Lorem ipsum dolor sit amet, consec adipiscing elit. Nam eusem
+                                                scelerisque tempor, varius quam luctus dui. Mauris magna metus
+                                                nec.
+                                            </p>
+                                            <p class="overview"><b>Felix Lengyel</b>, Seo Analyst</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="media">
+                                    <div class="media-left d-flex mr-3">
+                                        <img src="{% static 'image/tyler1.jpg' %}" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="media-body">
+                                        <div class="testimonial">
+                                            <p>Vestibulum quis quam ut magna consequat faucibus. Pellentesque
+                                                eget
+                                                mi suscipit tincidunt. Utmtc tempus dictum. Pellentesque virra.
+                                            </p>
+                                            <p class="overview"><b>Tyler Steinkamp</b>, Web Designer</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item carousel-item">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="media">
+                                    <div class="media-left d-flex mr-3">
+                                        <img src="{% static 'image/hugh.png' %}" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="media-body">
+                                        <div class="testimonial">
+                                            <p>Lorem ipsum dolor sit amet, consec adipiscing elit. Nam eusem
+                                                scelerisque tempor, varius quam luctus dui. Mauris magna metus
+                                                nec.
+                                            </p>
+                                            <p class="overview"><b>Rudy Pantoja</b>, UX Analyst</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="media">
+                                    <div class="media-left d-flex mr-3">
+                                        <img src="{% static 'image/rebecca.png' %}" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="media-body">
+                                        <div class="testimonial">
+                                            <p>Vestibulum quis quam ut magna consequat faucibus. Pellentesque
+                                                eget
+                                                mi suscipit tincidunt. Utmtc tempus dictum. Pellentesque virra.
+                                            </p>
+                                            <p class="overview"><b>Rebecca Black</b>, Web Developer</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-    </footer>
+    </div>
+</div>
+
+<!-- get started area -->
+
+<div class="callToAction">
+    <h1>Sign up Today</h1>
+    <a href="#" class="btnFilled">Get Started</a>
+</div>
+
+<footer>
+    <div class="footerPages">
+        <a href="#">Home</a>
+        <a href="#">About</a>
+        <a href="#">Contact</a>
+    </div>
+</footer>
 {% endblock content %}
