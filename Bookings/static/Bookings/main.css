@@ -111,13 +111,13 @@ a:hover {
   display: block;
   width: 100%;
   height: 50px;
-  border-radius: 25px;
+  border-radius: 25px !important;
   outline: none;
   border: none;
   background-image: linear-gradient(to right, #622CCF, #4A026D, #622CCF);
   background-size: 200%;
   font-size: 1.2rem;
-  color: #fff;
+  color: #fff !important;
   font-family: 'Poppins', sans-serif;
   text-transform: uppercase;
   margin: 1rem 0;
@@ -188,3 +188,4 @@ a:hover {
   top: 50px;
   left: 100px;
 }
+
