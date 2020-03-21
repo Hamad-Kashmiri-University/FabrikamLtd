@@ -7,6 +7,10 @@
   vertical-align: baseline;
 }
 
+html {
+  font-family: CircularBOLD, sans-serif;
+  font-family: CircularBOOK, sans-serif;
+}
 
 .content-section {
   background: #ffffff;
@@ -75,4 +79,112 @@ body {
   width: 100%;
   margin: 0 auto;
   overflow-x: hidden;
+}
+
+/*----------login bg----------*/
+
+.wave {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  height: 100%;
+  z-index: -1;
+}
+
+
+
+a {
+  display: block;
+  text-align: right;
+  text-decoration: none;
+  color: #999;
+  font-size: 0.9rem;
+  transition: .3s;
+}
+
+
+a:hover {
+  color: #622CCF;
+}
+
+.btn {
+  display: block;
+  width: 100%;
+  height: 50px;
+  border-radius: 25px;
+  outline: none;
+  border: none;
+  background-image: linear-gradient(to right, #622CCF, #4A026D, #622CCF);
+  background-size: 200%;
+  font-size: 1.2rem;
+  color: #fff;
+  font-family: 'Poppins', sans-serif;
+  text-transform: uppercase;
+  margin: 1rem 0;
+  cursor: pointer;
+  transition: .5s;
+}
+
+.btn:hover {
+  background-position: right;
+  color: white;
+}
+
+.login-content img {
+  height: 100px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+
+.form1 form {
+  width: 360px;
+  position: relative;
+  top: 200px;
+  left: 100px;
+}
+
+.img img {
+  width: 600px;
+  position: relative;
+  top: 200px;
+
+}
+
+.cont .container {
+  width: 100vw;
+  height: 100vh;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 7rem;
+  padding: 0 2rem;
+}
+
+.login-content h2 {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 40%;
+  color: #622CCF;
+  text-transform: uppercase;
+  font-size: 2.9rem;
+}
+
+.login-content .title2 h2 {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 56%;
+  color: #622CCF;
+  text-transform: uppercase;
+  font-size: 2.9rem;
+}
+
+
+.form2 form {
+  width: 360px;
+  position: relative;
+  top: 50px;
+  left: 100px;
 }

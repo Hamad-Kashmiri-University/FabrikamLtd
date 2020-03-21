@@ -1,22 +1,25 @@
 {% extends "Bookings/base.html" %}
+{% load static %}
 {% load crispy_forms_tags %}
 {% block content %}
-<div class = content-section>
-    <form method="POST">
-        {% csrf_token %}
-        <fieldset class = 'form-group'>
-            <legend class = "border-bottom mb-4">Join Today</legend>
-            {{ form|crispy }}
-        </fieldset>
-        <div class = "form-group">
-            <button class = "btn btn-outline-info" type = "submit">Sign Up</button>
+<img class="wave" src="{% static 'image/Mask Group 2.svg' %}">
+<div class="cont">
+    <div class="container">
+        <div class="img">
+            <img src="{% static 'image/undraw_authentication_fsn5.svg' %}">
         </div>
-    </form>
-    <div class="border-top pt-3">
-        <small class = "text-muted">
-            Already have an account? <a class="ml-2" href="{% url 'login' %}">Sign In</a>
-        </small>
-    </div>
-</div>
-{% endblock %}
-
+        <div class="form2">
+            <form method="POST">
+                {% csrf_token %}
+                <div class="login-content title">
+                    <form action="index.html">
+                        <img src="{% static 'image/undraw_male_avatar_323b.svg' %}">
+                        <div class="title2">
+                            <h2 class="title2">REGISTER</h2>
+                        </div>
+                        {{ form|crispy }}
+                        <a>Have an account?<a href="{% url 'login' %}">Sign In</a></a>
+                        <input type="submit" class="btn color" value="Login">
+                </div>
+            </form>
+            {% endblock %}
