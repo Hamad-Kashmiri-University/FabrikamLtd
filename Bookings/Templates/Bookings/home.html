@@ -1,4 +1,8 @@
 {% extends "Bookings/base.html" %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" type="text/css" href="{% static 'Bookings/main.css' %}">
+{% endblock css %}
 {% block content %}
     <h1>Booking Home</h1>
     {% for class in session %}
