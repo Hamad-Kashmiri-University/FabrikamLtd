@@ -1,0 +1,267 @@
+/* c++, python, JS, logo colour #8B1AEE */
+
+
+/*----------global----------*/
+
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+}
+
+html {
+    font-family: CircularBOLD, sans-serif;
+    font-family: CircularBOOK, sans-serif;
+}
+
+body {
+    width: 100%;
+    margin: 0 auto;
+    overflow-x: hidden;
+}
+
+h1 {
+    font-size: 50px;
+    line-height: 62px;
+    font-weight: 650;
+    color: #622CCF;
+    position: relative;
+    z-index: 0;
+    padding-bottom: 15px;
+
+}
+
+h3 {
+    font-size: 24px;
+}
+
+p {
+    font-size: 16px;
+}
+
+.btnOutline {
+    display: block;
+    text-decoration: none;
+    color: #622CCF;
+    border: 2px solid #622CCF;
+    border-radius: 50px;
+    width: 175px;
+    height: 40px;
+    line-height: 37px;
+    text-align: center;
+    margin-top: 30px;
+}
+
+.btnFilled {
+    display: block;
+    text-decoration: none;
+    color: white;
+    background-color: #622CCF;
+    border-radius: 50px;
+    width: 175px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    margin-top: 30px;
+
+}
+
+/*----------header----------*/
+
+header {
+    height: 1000px;
+    min-height: 1000px;
+    padding: 0 5%;
+    margin-bottom: 300px;
+}
+
+header h1 {
+    width: 40%;
+    margin: 4em 0 1em 0;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+
+    .service_area .single_service {
+        padding: 30px 20px;
+    }
+}
+
+.service_area .single_service h3 {
+    font-size: 24px;
+    font-weight: 600;
+    color: #2C2C2C;
+    margin-top: 24px;
+    padding-bottom: 12px;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+
+    .service_area .single_service h3 {
+        font-size: 22px;
+    }
+}
+
+.service_area .single_service p {
+    color: #727272;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 30px;
+    margin-bottom: 0;
+}
+
+.service_area .single_service:hover {
+    border: 1px solid #615CFD;
+}
+
+.section_title h3 {
+    font-size: 50px;
+    line-height: 62px;
+    font-weight: 700;
+    color: #622CCF;
+    position: relative;
+    z-index: 0;
+    padding-bottom: 15px;
+}
+
+/*----------call to action----------*/
+
+.callToAction {
+    text-align: center;
+    padding: 20em 5% 20em 5%;
+}
+
+.callToAction h1,
+.callToAction a {
+    display: inline-block;
+    margin: 0 60px;
+    vertical-align: middle;
+}
+
+.callToAction .btnFilled {
+    margin-bottom: 5px;
+}
+
+/*----------footer----------*/
+
+footer {
+    padding: 0 5%;
+    margin-bottom: 40px;
+    color: #622CCF;
+}
+
+.footer p,
+.footerPages {
+    display: inline-block;
+}
+
+.footerPages {
+    float: right;
+}
+
+.footerPages a {
+    text-decoration: none;
+    font-weight: 300;
+    color: #4A026D;
+    margin-left: 30px;
+    font-weight: 600;
+}
+
+/*----------responsive----------*/
+
+@media only screen and (max-width: 1000px) {
+    header {
+        height: 1600px;
+        min-height: 1600px;
+        background-image: url(/public/image/mobile-bg-1.svg);
+        background-repeat: no-repeat;
+        background-position: bottom right;
+        background-size: contain;
+    }
+
+    header h1 {
+        width: 100%;
+    }
+
+    .container {
+        margin: 3em 0 3em 0;
+    }
+
+    .container h2 {
+        width: 100%;
+    }
+
+    .about {
+        padding: 0 5%;
+        background-image: url(/public/image/mobile-bg-2.svg);
+        background-size: contain;
+        background-size: 80%;
+        height: 900x;
+        min-height: 900px;
+        overflow-y: visible;
+    }
+
+    .about h1 {
+        padding-top: 1000px;
+    }
+
+    .callToAction {
+        margin-top: 10em;
+        padding: 15em 5% 15em 5%;
+        background-size: 70%;
+    }
+
+    .callToAction h1,
+    .callToAction a {
+        margin-bottom: 30px;
+    }
+
+    footer {
+        text-align: center;
+    }
+
+    .footerPages {
+        visibility: hidden;
+    }
+
+    footer p,
+    .footerPages {
+        display: block;
+    }
+
+    nav a {
+        color: black;
+    }
+
+}
+
+@media only screen and (max-width: 600px) {
+    header {
+        height: 1300px;
+        min-height: 1300px;
+    }
+
+    header h1 {
+        margin: 2em 0 0 0;
+    }
+
+    .about h1 {
+        padding-top: 800px;
+    }
+
+    .members {
+        flex-direction: column;
+    }
+
+
+    .person {
+        margin-top: 30px;
+    }
+
+    nav a {
+        color: black;
+    }
+}
