@@ -23,6 +23,10 @@ body {
     overflow-x: hidden;
 }
 
+input[name=message] {
+    width: 80%;
+}
+
 h1 {
     font-size: 50px;
     line-height: 62px;
@@ -69,13 +73,8 @@ p {
 
 }
 
-/*----------header----------*/
-
 header {
-    height: 1000px;
-    min-height: 1000px;
     padding: 0 5%;
-    margin-bottom: 300px;
 }
 
 header h1 {
@@ -145,31 +144,6 @@ header h1 {
     margin-bottom: 5px;
 }
 
-/*----------footer----------*/
-
-footer {
-    padding: 0 5%;
-    margin-bottom: 40px;
-    color: #622CCF;
-}
-
-.footer p,
-.footerPages {
-    display: inline-block;
-}
-
-.footerPages {
-    float: right;
-}
-
-.footerPages a {
-    text-decoration: none;
-    font-weight: 300;
-    color: #4A026D;
-    margin-left: 30px;
-    font-weight: 600;
-}
-
 /*----------responsive----------*/
 
 @media only screen and (max-width: 1000px) {
@@ -192,20 +166,6 @@ footer {
 
     .container h2 {
         width: 100%;
-    }
-
-    .about {
-        padding: 0 5%;
-        background-image: url(/public/image/mobile-bg-2.svg);
-        background-size: contain;
-        background-size: 80%;
-        height: 900x;
-        min-height: 900px;
-        overflow-y: visible;
-    }
-
-    .about h1 {
-        padding-top: 1000px;
     }
 
     .callToAction {

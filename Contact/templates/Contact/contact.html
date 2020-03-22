@@ -6,12 +6,13 @@
 {% load crispy_forms_tags %}
 {% block content %}
 <img class="wave" src="{% static 'image/Mask Group 2.svg' %}">
-<div class="row">
-    <div class="col">
-        <h2>text</h2>
-    </div>>    
-    <div class="col">
-        <h2>text</h2>
-    </div>>    
+<div class="container-fluid pt-5">
+    <h1>Contact Us</h1>
+    <h3>Got a question for us? Just ask. We'll get back to you as soon as possible. </h3>
+    <form method="POST" class="form">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="save btn btn-default">Log</button>
+    </form>
 </div>
 {% endblock content %}
