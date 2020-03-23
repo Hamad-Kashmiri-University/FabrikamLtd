@@ -71,57 +71,23 @@ form h1 {
     font-size: 2.9rem;
 }
 
-
-
-
-
-section {
-    background-color: #2C2C2C;
-}
-
-h3 {
-    font-size: 24px;
-}
-
-p {
-    font-size: 16px;
-}
-
-.btnOutline {
+.form .btn {
     display: block;
-    text-decoration: none;
-    color: #622CCF;
-    border: 2px solid #622CCF;
-    border-radius: 50px;
-    width: 175px;
-    height: 40px;
-    line-height: 37px;
-    text-align: center;
-    margin-top: 30px;
-}
-
-.btnFilled {
-    display: block;
-    text-decoration: none;
-    color: white;
-    background-color: #622CCF;
-    border-radius: 50px;
-    width: 175px;
-    height: 40px;
-    line-height: 40px;
-    text-align: center;
-    margin-top: 30px;
-
-}
-
-header {
-    padding: 0 5%;
-}
-
-header h1 {
-    width: 40%;
-    margin: 4em 0 1em 0;
-}
+    width: 100%;
+    height: 50px;
+    border-radius: 25px !important;
+    outline: none;
+    border: none;
+    background-image: linear-gradient(to right, #622CCF, #4A026D, #622CCF);
+    background-size: 200%;
+    font-size: 1.2rem;
+    color: #fff !important;
+    font-family: 'Poppins', sans-serif;
+    text-transform: uppercase;
+    margin: 1rem 0;
+    cursor: pointer;
+    transition: .5s;
+  }
 
 @media (min-width: 768px) and (max-width: 991px) {
 
