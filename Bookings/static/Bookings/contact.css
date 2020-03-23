@@ -1,5 +1,3 @@
-/* c++, python, JS, logo colour #8B1AEE */
-
 
 /*----------global----------*/
 
@@ -26,7 +24,7 @@ body {
 /*----------contact form----------*/
 
 .cont .container {
-    padding-top: 5rem;
+    padding-top: 3rem;
     width: 100vw;
     height: 100vh;
     display: grid;
@@ -161,6 +159,10 @@ form h1 {
         background-repeat: no-repeat;
         background-position: bottom right;
         background-size: contain;
+    }
+
+    form {
+        margin-left: 0rem;
     }
 
     header h1 {
