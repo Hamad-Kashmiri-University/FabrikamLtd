@@ -7,8 +7,7 @@ def contact(request):
     form = suppTicketForm(request.POST)
     if request.method == "POST":
         if form.is_valid():
-            message = form.save()
-            message.save()
+            form.save()
             return redirect("Home")
     else:
         return render(request, 'Contact/contact.html', {'form': form})
