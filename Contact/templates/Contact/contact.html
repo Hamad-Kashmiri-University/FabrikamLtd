@@ -6,42 +6,39 @@
 {% load crispy_forms_tags %}
 {% block content %}
 <img class="wave" src="{% static 'image/Mask Group 2.svg' %}">
-<div class="container-fluid pt-5">
-    <h1>Contact Us</h1>
-    <h3>Got a question for us? Just ask. We'll get back to you as soon as possible. </h3>
-    <div class = content-section>
-        <form method="POST" class="post-form form-horisontal pt-3" enctype="multipart/form-data">
-            {% csrf_token %}
-            <div class="form-group">
-                {{ form.email.errors }}
-                <label class="control-label col-sm-2" for="{{ form.email.id_for_label }}">Name</label>
-                <div class="col-sm-5">{{ form.name }}</div>
-                <div class="clear"></div>
-            </div>
-            <div class="form-group">
-                {{ form.email.errors }}
-                <label class="control-label col-sm-2" for="{{ form.email.id_for_label }}">Email</label>
-                <div class="col-sm-5">{{ form.email }}</div>
-                <div class="clear"></div>
-            </div>
-            <div class="form-group">
-                {{ form.subject.errors }}
-                <label class="control-label col-sm-2" for="{{ form.subject.id_for_label }}">Subject</label>
-                <div class="col-sm-5">{{ form.subject }}</div>
-                <div class="clear"></div>
-            </div>
-            <div class="form-group">
-                {{ form.message.errors }}
-                <label class="control-label col-sm-2" for="{{ form.message.id_for_label }}">Message</label>
-                <div class="col-sm-5">{{ form.message}}</div>
-                <div class="clear"></div>
-            </div> 
-            <div class="form-group">
-                <label class="control-label col-sm-2"></label>
-                <div class="col-sm-5"><input class="btn btn-primary" type="submit" name="submit" value="Send   Email"></div>
-                <div class="clear"></div>
-            </div> 
-        </form>
+<div class="cont">
+    <div class="container">
+        <div class = "form">
+            <form method="POST" class="form form-horizontal pt-3" enctype="multipart/form-data">
+                <h1 class="text-align-center">Contact Us</h1>
+                {% csrf_token %}
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="{{ form.email.id_for_label }}">Name</label>
+                    <div class="col">{{ form.name }}</div>
+                    <div class="clear"></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="{{ form.email.id_for_label }}">Email</label>
+                    <div class="col">{{ form.email }}</div>
+                    <div class="clear"></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="{{ form.subject.id_for_label }}">Subject</label>
+                    <div class="col">{{ form.subject }}</div>
+                    <div class="clear"></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="{{ form.message.id_for_label }}">Message</label>
+                    <div class="col">{{ form.message}}</div>
+                    <div class="clear"></div>
+                </div> 
+                <div class="form-group">
+                    <label class="control-label col-sm-2"></label>
+                    <div class="col-sm-5"><input class="btn btn-primary" type="submit" name="submit" value="Submit"></div>
+                    <div class="clear"></div>
+                </div> 
+            </form>
+        </div>
     </div>
 </div>
 {% endblock content %}
