@@ -1,19 +1,26 @@
 {% extends "Bookings/base.html" %}
 {% load crispy_forms_tags %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" type="text/css" href="{% static 'Bookings/sessions.css' %}">
+{% endblock css %}
 {% block content %}
-<div class = content-section>
-    <form method="POST">
-        {% csrf_token %}
-        <fieldset class = 'form-group'>
-            <legend class = "border-bottom mb-4">Test</legend>
-            {{ form|crispy }}
-        </fieldset>
-        <div class = "form-group">
-            <button class = "btn btn-outline-info" type = "submit">Test</button>
+<img class="wave" src="{% static 'image/Mask Group 2.svg' %}">
+<div class="cont">
+    <div class="container">
+        <div class="img">
+            <img src="{% static 'image/undraw_booking_33fn.svg' %}">
         </div>
-    </form>
-</div>
-{% endblock %}
-
-
-
+        <div class="form3">
+            <form method="POST">
+                {% csrf_token %}
+                <fieldset class='form-group'>
+                    <legend class="border-bottom mb-4 text-center">Book a Session</legend>
+                    {{ form|crispy }}
+                </fieldset>
+                <div class="form-group">
+                    <button class="btn btn-outline-info" type="submit">Book Now</button>
+                </div>
+            </form>
+        </div>
+        {% endblock %}
