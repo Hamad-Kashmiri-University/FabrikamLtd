@@ -1,3 +1,4 @@
+#Code by Finlay Campbell
 from django.db import models
 
 class suppTicket(models.Model):
