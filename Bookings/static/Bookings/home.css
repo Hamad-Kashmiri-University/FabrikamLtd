@@ -354,8 +354,6 @@ h2::after {
 /*----------footer----------*/
 
 footer {
-    padding: 0 5%;
-    margin-bottom: 40px;
     color: #622CCF;
 }
 
@@ -425,18 +423,6 @@ footer {
         margin-bottom: 30px;
     }
 
-    footer {
-        text-align: center;
-    }
-
-    .footerPages {
-        visibility: hidden;
-    }
-
-    footer p,
-    .footerPages {
-        display: block;
-    }
 
     nav a {
         color: black;

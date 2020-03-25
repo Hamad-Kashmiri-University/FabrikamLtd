@@ -91,8 +91,6 @@ body {
   z-index: -1;
 }
 
-
-
 a {
   display: block;
   text-align: right;
@@ -186,4 +184,60 @@ a:hover {
   position: relative;
   top: 50px;
   left: 100px;
+}
+
+@media screen and (max-width: 1000px) {
+  .form1 form {
+    width: 290px;
+    position: absolute;
+  }
+
+  .form2 form {
+    width: 290px;
+    margin-top: 150px;
+    position: absolute;
+  }
+
+  .login-content h2 {
+    font-size: 2.4rem;
+    margin: 8px 0;
+  }
+
+  .img {
+    display: none;
+  }
+
+  .wave {
+    display: none;
+  }
+}
+
+/*----------footer----------*/
+
+
+.copyright {
+  padding: 28px;
+  background-image: linear-gradient(to right, #622ccf, #6222b8, #6019a2, #5b108d, #550879, #550879, #550879, #550879, #5b108d, #6019a2, #6222b8, #622ccf);
+}
+
+.copyright span,
+.copyright a {
+  color: #ffffff;
+  -webkit-transition: all 0.3s linear;
+  -o-transition: all 0.3s linear;
+  transition: all 0.3s linear;
+}
+
+.copyright a:hover {
+  color: #001aff;
+}
+
+.copyright-menu ul {
+  text-align: right;
+  margin: 0;
+}
+
+.copyright-menu li {
+  display: inline-block;
+  padding-left: 20px;
 }

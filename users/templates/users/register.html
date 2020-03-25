@@ -15,11 +15,14 @@
                     <form action="index.html">
                         <img src="{% static 'image/undraw_male_avatar_323b.svg' %}">
                         <div class="title2">
-                            <h2 class="title2">REGISTER</h2>
+                            <h2 class="title2 text-center">REGISTER</h2>
                         </div>
                         {{ form|crispy }}
                         <a>Have an account?<a href="{% url 'login' %}">Sign In</a></a>
                         <input type="submit" class="btn color" value="Login">
                 </div>
-            </form>
-            {% endblock %}
+        </div>
+    </div>
+</div>
+</form>
+{% endblock %}
