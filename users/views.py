@@ -6,6 +6,8 @@ from django.contrib.auth.views import LoginView
 from Bookings.models import Booking, Session, IndividualSession 
 from .models import Profile
 from datetime import datetime, timedelta
+from django.http import JsonResponse 
+import json # for js we need json format
 
 tmrtime = datetime.now() + timedelta(hours = 24)#used in filtering bookings for profile
 def CustomLoginView(LoginView):
@@ -28,8 +30,62 @@ def register(request):
     #checks if post request try to validate the form data, otherwise instantiate empty form
     return render(request, 'users/register.html', {'form': form})
 
+def get_data(request, *args, **kwargs):
+    labels1 = []    
+    data1vals = [] #contains values
+    data1 = []   #contains the count
+    chartlabels = Session.objects.all()
+    chartdata = Booking.objects.all().filter(user = request.user).order_by("individualsession__sessiontime")  # get queryset for chart
+    for session in chartlabels:
+        labels1.append(session.title)   
+    for each in chartdata:
+        data1vals.append(each.individualsession.session.id)
+    data1vals = set(data1vals) # get unique items
+    data1vals = list(data1vals)
+    for val in range(len(data1vals)):
+        print(val)
+        data1.append(0)
+    for booking in chartdata:
+        for index in range(len(data1vals)):
+            if booking.individualsession.session.id == data1vals[index]:
+                data1[index] += 1
+    #make vals list with id for ecah session a person has booked
+    #make a data list with 0 for each session booked
+    # compare bookng session id with id in list and increment by 1 to get total for each item
+    data = {
+        "labels": labels1,
+        "data": data1
+    }
+    return JsonResponse(data)
+    #we get jsonresponse not htmlresp so we can get json data to use in any page
+
 @login_required  #login decorator user must be logged in to view this page , this is the reason we dont pass user data as a user must be logged in 
 def profile(request):
+    labels1 = []
+    data1vals = [] #contains values
+    data1 = []   #contains the count
+    chartlabels = Session.objects.all()
+    chartdata = Booking.objects.all().filter(user = request.user).order_by("individualsession__sessiontime")  # get queryset for chart
+    for session in chartlabels:
+        labels1.append(session.title)   
+    for each in chartdata:
+        data1vals.append(each.individualsession.session.id)
+    data1vals = set(data1vals) # get unique items
+    data1vals = list(data1vals)
+    for val in range(len(data1vals)):
+        print(val)
+        data1.append(0)
+    for booking in chartdata:
+        for index in range(len(data1vals)):
+            if booking.individualsession.session.id == data1vals[index]:
+                data1[index] += 1
+    data = json.dumps(data1) # return back into a list 
+    labels = json.dumps(labels1)
+    print(data1vals)
+    print(data1)
+    print(labels1)
+    print(labels, data)
+    #for loop to get chart vals
     if request.user.profile.is_teacher:
         return redirect("teacherprofile")
     if request.method == "POST":
@@ -51,14 +107,16 @@ def profile(request):
     context = {
         'u_form': u_form,
         'p_form': p_form,
-        'bookings': Booking.objects.all().filter(user = request.user, individualsession__sessiontime__gt = tmrtime)
+        'bookings': Booking.objects.all().filter(user = request.user, individualsession__sessiontime__gt = tmrtime) #24 hours future
         # dynamic filtering above using foreign key attrs 
      }
     return render(request, 'users/profile.html', context)
 
+
 #same as user profile in terms of form however different stuff overall page
 @login_required
 def teacherprofile(request):
+    get_data = get_data()
     if not request.user.profile.is_teacher:
         return redirect("profile")
     u_form = UserUpdateForm(instance=request.user) # pass in current users info to the forms

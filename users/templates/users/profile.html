@@ -1,33 +1,151 @@
 {% extends "Bookings/base.html" %}
 {% load crispy_forms_tags %}
+{% load static %}
+{% load crispy_forms_filters %}
+{% block css %}
+<link rel="stylesheet" type="text/css" href="{% static 'Bookings/profile.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.css">
+{% endblock %}
 {% block content %}
-<div class = "container content-section">
-    <div class = "row">
-        <div class = "col col-md-4"> 
-            <h1>{{ user.username }}</h1>
-            <img class="img-fluid img-thumbnail" src="{{ user.profile.image.url }}" alt="" height="100" width="100">
-        </div> 
-        <div class = "col col-sm-4">
-            <form method="POST" enctype="multipart/form-data"><!-- enctype is used for images saving-->
-                {% csrf_token %}
-                <fieldset class = 'form-group'>
-                    <legend class = "border-bottom mb-4">Profile Information</legend>
-                    {{ u_form|crispy }}
-                    {{ p_form|crispy }}<!-- we passing in 2 forms so need 2-->
-                </fieldset>
-                <div class = "form-group">
-                    <button class = "btn btn-outline-info" type = "submit">Update</button>
-                </div>
-            </form>
-        </div>
+<img class = "wave bg1" src="{% static 'image/profilecorner1.svg' %}" alt="missing">
+<h1 class="toph1">Welcome to your Profile</h1>
+<img class = "bg2" src="{% static 'image/userimage.svg' %}" alt="missing">
+<h1 class="username">{{ user.username }}</h1>
+<div class="circular-portrait "><img src="{{ user.profile.image.url }}" /> </div>
+<div class="optioncontainer">
+    <div class="showSingle items" target="1">
+      <div class="icon-wrapper">
+        <i class="fa fa-pencil"></i>
+      </div>
+      <div class="project-name">
+        <p>Update Profile</p>
+      </div>
     </div>
-</div> 
+    <div class="showSingle items" target="2">
+      <div class="icon-wrapper">
+        <i class="fa fa-desktop"></i>
+      </div>
+      <div class="project-name">
+        <p>My Bookings</p>
+      </div>
+    </div>
+    <div class="showSingle items" target="3">
+      <div class="icon-wrapper">
+        <i class="fa fa-area-chart"></i>
+      </div>
+      <div class="project-name">
+        <p>Graphs?</p>
+      </div>
+    </div>  
+</div>
+<div class = "contentcontainer">
+    <div class="intialDiv">
+    <h1 >Click the options to view</h1>
+    </div>
+    <div class="targetDiv col col-sm-6" id="content1">
+      <form method="POST" class="updateform" enctype="multipart/form-data"><!-- enctype is used for images saving-->
+        {% csrf_token %}
+        <fieldset class = 'form-group'>
+            <legend class = "border-bottom mb-4">Profile Information</legend>
+            {{ u_form|crispy }}
+            {{ p_form|crispy }}<!-- we passing in 2 forms so need 2-->
+        </fieldset>
+        <div class = "form-group">
+            <button class = "btn btn-outline-info" type = "submit">Update</button>
+        </div>
+    </form>
+    </div>
+    <div class="targetDiv" id="content2">
+        <!-- display items in columns of quantity below using divby -->
+      <div class="row">
 
-<div class = "container">
-    {% for booking in bookings %}
-        <p>{{ booking.individualsession }} </p>     
-    {% endfor %}
+        {% for booking in bookings %}
+        <div class="col">
+          <!-- card for bookings -->
+          <div class="bookingcard">
+            <div class="card-count-container">
+              <div class="card-count">{{ forloop.counter }}</div>
+            </div>
+            <img class="card-icon" src="{{ booking.individualsession.session.logo.url }}" alt="">
+            <div class="card-content">
+              <h2>{{ booking.individualsession.session.title }}</h2>
+                My Requirements: {{ booking.additionalrequirements }} 
+            </div>
+            
+            <div class="card-footer">
+                Taught By: {{ booking.individualsession.session.teacher }} at {{ booking.individualsession.sessiontime|date:'Y-m-d H:i' }}
+            </div>
+          </div>
+
+        </div>
+        
+
+            <!-- if last column in row -->
+            {% if forloop.counter|divisibleby:"2" and not forloop.last %}
+            </div><div class="row">
+            {% endif %}
+
+        {% endfor %}
+      </div>
+    </div>
+    <div class="targetDiv chart" id="content3">
+        <canvas id="myChart"></canvas>
+      
+    </div>
 </div>
 
+{% block js %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+<script type = "text/javascript">
+var endpoint = "../api/data" // {% url "api-data" %} // route to my json data
+var defaultdata = []
+var labels = []
+
+//utilizing ajax to get our json values as python values dont work, instead of parsing its a direct call
+// use these values to make our chart.js nice
+$.ajax({
+  method:"GET",
+  url: endpoint,
+  success: function(data){
+    labels = data.labels
+    defaultdata = data.data
+    console.log(data)
+    $(document).ready(function() {
+    var ctx = document.getElementById('myChart').getContext('2d');
+    var chart = new Chart(ctx, {
+      // The type of chart we want to create
+      type: 'polarArea',
+      
+      // The data for our dataset
+      data: {
+          labels: labels,
+          datasets: [{
+              backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
+              data: defaultdata
+          }]
+      },
+
+      // Configuration options go here
+      options: {
+        title: {
+          display: "true",
+          text: "What are my favourite languages?",
+          position: "top",
+          
+        }
+      }
+  });
+  })
+  },
+  error: function(error_data){
+    console.log("error")
+    console.log(data)
+  }
+})
+
+  </script>
+  <script type=text/javascript src="{% static 'Bookings/jquery.js' %}"></script>
+{% endblock %}
 {% endblock %}
 <!-- we can use user.username without passing anything in views because user is built in -->

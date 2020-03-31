@@ -9,7 +9,8 @@ class Session(models.Model):
     title = models.CharField(max_length = 100)
     company = models.CharField(max_length = 100) 
     teacher = models.ForeignKey(User, on_delete=models.CASCADE, default = 2) # foreign key user THIS WILL BE DELETED BECAUSE SESSION FK GOES IN USER
-
+    logo = models.ImageField(default = 'python-19.png', upload_to='profile_pics', blank = False)
+    
     def __str__(self):
         return self.title 
        
