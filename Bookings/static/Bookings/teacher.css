@@ -1,0 +1,401 @@
+html {
+    font-family: CircularBOLD, sans-serif !important;
+    font-family: CircularBOOK, sans-serif !important;
+}
+
+.bg1
+{
+    height: 255% !important;
+    top: -475px !important;
+    position: absolute !important;
+}
+
+.bg2
+{
+    height: 55% !important;
+    width: 550px !important;
+    left: 1000px !important;
+    top: 450px !important;
+    position: absolute !important;
+}
+
+
+/* topsection */
+.toph1 {
+    font-size: 50px;
+    line-height: 62px;
+    font-weight: 650;
+    color: #622CCF;
+    position: relative;
+    z-index: 0;
+    padding-bottom: 15px;
+    margin-left: 700px;
+    margin-top: 275px;
+    white-space: normal;
+    text-align: center;
+
+}
+.username {
+    font-size: 50px;
+    line-height: 62px;
+    font-weight: 650;
+    color: white;
+    position: relative;
+    z-index: 0;
+    margin-left: -250px;
+    margin-top: -220px;
+}
+
+
+.circular-portrait {
+    position: static;
+    width: 8.5vw;
+    height: 8.5vw;
+    overflow: hidden;
+    border-radius: 50%;
+    margin-top: 210px;
+    margin-left: 60px;
+    border: 2px solid white !important;
+
+  }
+  .circular-portrait img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover;
+
+  }
+
+/* midsection */
+
+
+
+
+.optioncontainer {
+  width: 800px;
+  height: 250px;
+  margin-top: 1000px !important;
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  margin: auto;
+  box-sizing: border-box;
+  
+  display: grid;
+  grid-template-columns: repeat( auto-fit, minmax(250px, 1fr) );
+  grid-template-rows: 1fr;
+  grid-gap: 15px;
+}
+
+.items {
+  border-radius: 5px;
+  display: grid;
+  grid-template-rows: 2fr 1fr;
+  grid-gap: 10px;
+  cursor: pointer;
+  border: 3px dotted lightgrey;
+  transition: all 1s;
+}
+
+
+.icon-wrapper, .project-name {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon-wrapper i {
+  font-size: 100px;
+  color: #622CCF;
+  transform: translateY(0px);
+  transition: all 0.6s;
+}
+
+.icon-wrapper {
+  align-self: end;  
+}
+
+.project-name {
+  align-self: start;
+}
+.project-name p {
+  font-size: 24px;
+  font-weight: 3px;
+  letter-spacing: 0px;
+  color: black;  
+  transform: translateY(0px);
+  transition: all 0.5s;
+}
+
+.items:hover {
+  border: 3px solid black;
+  
+  }
+
+.items:hover .project-name p
+ {
+    transform: translateY(-10px);
+ }
+ .items:hover .icon-wrapper i 
+ {
+    transform: translateY(5x);
+ }
+
+.contentcontainer {
+
+    margin-top: 550px;
+    margin-left: 300px;
+}
+
+
+/* css for the booking card */
+  
+.bookingcard{
+  margin: 20px;
+  border-radius: 10px;
+  background-color: #ffffff;
+  overflow: hidden;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.4);
+  width: 400px;
+  margin-left: -150px;
+}
+
+.card-count-container{
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 200px;
+  padding: 10px 0px;
+}
+  
+.card-count{
+  font-weight: bold;
+  font-size: 100px;
+  width: 360px;
+  height: 360px;
+  display: flex;
+  justify-content: center;
+  border-radius: 50%;
+  margin: auto;
+  margin-right: -50px;
+  padding-right: 25px;
+  overflow: hidden;
+  color: #ffffff;
+  box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.5);
+  text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
+  transition: all 0.2s ease-in-out;
+  text-align: right !important;
+}
+
+  /* booking card */
+.card-content{
+  padding: 20px;
+  padding-top: 0px;
+  position: flex;
+  overflow-wrap: break-word;
+}
+
+.card-content h2{
+  margin-top: -50px;
+  text-align: end;
+  color: white !important;
+  position: relative;
+}
+
+  
+.card-footer{
+  padding: 20px;
+  color: #ffffff;
+}
+
+.bookingcard content:nth-child(1), .card-count{
+  opacity: 0.8;
+  background-image: linear-gradient(to right, #622ccf, #6222b8, #6019a2, #5b108d, #550879, #550879, #550879, #550879);
+}
+
+
+.bookingcard content:nth-child(1), .card-footer{
+
+  background-image: linear-gradient(to right, #622ccf, #6222b8, #6019a2, #5b108d, #550879, #550879, #550879, #550879);
+}
+
+
+
+.bookingcard:hover .card-count{
+
+    width: 150px;
+    height: 150px;
+  }
+ 
+.bookingcard:hover .card-content h2{
+  color: black !important;
+
+  }
+ 
+
+.card-icon {
+  width: 80px !important;
+  margin-top: -350px;
+  margin-right: 350px;
+  
+}
+
+.updateform {
+  margin-left: 100px !important;
+}
+
+.chart {
+  border: 1px dotted black !important;
+  margin-left: -300px !important;
+}
+
+
+.tbut{
+    background-color: #4CAF50 !important; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+  }
+
+
+ /* button animation */
+
+
+li {
+    list-style: none;
+    position: relative;
+    display: inline-block;
+    width: 100px;
+    height: 100px;
+}
+
+@-moz-keyframes rotate {
+    0% {transform: rotate(0deg);}
+    100% {transform: rotate(-360deg);}
+}
+
+@-webkit-keyframes rotate {
+    0% {transform: rotate(0deg);}
+    100% {transform: rotate(-360deg);}
+}
+
+@-o-keyframes rotate {
+    0% {transform: rotate(0deg);}
+    100% {transform: rotate(-360deg);}
+}
+
+@keyframes rotate {
+    0% {transform: rotate(0deg);}
+    100% {transform: rotate(-360deg);}
+}
+
+.round {
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    padding-top: 30px;		
+    text-decoration: none;		
+    text-align: center;
+    font-size: 25px;		
+    text-shadow: 0 1px 0 rgba(255,255,255,.7);
+    letter-spacing: -.065em;
+    font-family: "Hammersmith One", sans-serif;		
+    -webkit-transition: all .25s ease-in-out;
+    -o-transition: all .25s ease-in-out;
+    -moz-transition: all .25s ease-in-out;
+    transition: all .25s ease-in-out;
+    box-shadow: 2px 2px 7px rgba(0,0,0,.2);
+    border-radius: 300px;
+    z-index: 1;
+    border-width: 4px;
+    border-style: solid;
+}
+
+.round:hover {
+    width: 130%;
+    height: 130%;
+    left: -15%;
+    top: -15%;
+    font-size: 33px;
+    padding-top: 38px;
+    -webkit-box-shadow: 5px 5px 10px rgba(0,0,0,.3);
+    -o-box-shadow: 5px 5px 10px rgba(0,0,0,.3);
+    -moz-box-shadow: 5px 5px 10px rgba(0,0,0,.3);
+    box-shadow: 5px 5px 10px rgba(0,0,0,.3);
+    z-index: 2;
+    border-size: 10px;
+    -webkit-transform: rotate(-360deg);
+    -moz-transform: rotate(-360deg);
+    -o-transform: rotate(-360deg);
+    transform: rotate(-360deg);
+}
+
+button.red {
+    background-color: rgba(239,57,50,1);
+    color: rgba(133,32,28,1);
+    border-color: rgba(133,32,28,.2);
+}
+
+button.red:hover {
+    color: rgba(239,57,50,1);
+}
+
+a.green {
+    background-color: rgba(1,151,171,1);
+    color: rgba(0,63,71,1);
+    border-color: rgba(0,63,71,.2);
+}
+
+a.green:hover {
+    color: rgba(1,151,171,1);
+}
+
+a.yellow {
+    background-color: rgba(252,227,1,1);
+    color: rgba(153,38,0,1);
+    border-color: rgba(153,38,0,.2);
+}
+
+a.yellow:hover {
+    color: rgba(252,227,1,1);
+}
+
+.round span.round {
+    display: block;
+    opacity: 0;
+    -webkit-transition: all .5s ease-in-out;
+    -moz-transition: all .5s ease-in-out;
+    -o-transition: all .5s ease-in-out;
+    transition: all .5s ease-in-out;
+    font-size: 1px;
+    border: none;
+    padding: 40% 20% 0 20%;
+    color: #fff;
+}
+
+.round span:hover {
+    opacity: .85;
+    font-size: 16px;
+    -webkit-text-shadow: 0 1px 1px rgba(0,0,0,.5);
+    -moz-text-shadow: 0 1px 1px rgba(0,0,0,.5);
+    -o-text-shadow: 0 1px 1px rgba(0,0,0,.5);
+    text-shadow: 0 1px 1px rgba(0,0,0,.5);	
+}
+
+.green span {
+    background: rgba(0,63,71,.7);		
+}
+
+.red span {
+    background: rgba(133,32,28,.7);		
+}
+
+.yellow span {
+    background: rgba(161,145,0,.7);	
+
+}

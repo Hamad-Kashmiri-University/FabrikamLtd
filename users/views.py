@@ -34,20 +34,24 @@ def get_data(request, *args, **kwargs):
     labels1 = []    
     data1vals = [] #contains values
     data1 = []   #contains the count
-    chartlabels = Session.objects.all()
     chartdata = Booking.objects.all().filter(user = request.user).order_by("individualsession__sessiontime")  # get queryset for chart
-    for session in chartlabels:
-        labels1.append(session.title)   
+    #for session in chartlabels:
+     #   labels1.append(session.title)  this gets all sessions we want only user booked 
     for each in chartdata:
         data1vals.append(each.individualsession.session.id)
-    data1vals = set(data1vals) # get unique items
+    #if of all 
+    data1vals = set(data1vals) # get unique items rid of dupes
     data1vals = list(data1vals)
+    for index in data1vals:
+        session = Session.objects.all().filter(id=index).get()
+        labels1.append(session.title)
+    #returns the constant variables but only for sessions a user has booked using index from booking id
     for val in range(len(data1vals)):
-        print(val)
         data1.append(0)
-    for booking in chartdata:
-        for index in range(len(data1vals)):
-            if booking.individualsession.session.id == data1vals[index]:
+    #populate data with 0s for each unique session
+    for booking in chartdata:  # go through queryset for bookings
+        for index in range(len(data1vals)):   #for every booking, for every value in session index list
+            if booking.individualsession.session.id == data1vals[index]:  #for every booking this user has for a specific session we raise counter by 1
                 data1[index] += 1
     #make vals list with id for ecah session a person has booked
     #make a data list with 0 for each session booked
@@ -61,30 +65,6 @@ def get_data(request, *args, **kwargs):
 
 @login_required  #login decorator user must be logged in to view this page , this is the reason we dont pass user data as a user must be logged in 
 def profile(request):
-    labels1 = []
-    data1vals = [] #contains values
-    data1 = []   #contains the count
-    chartlabels = Session.objects.all()
-    chartdata = Booking.objects.all().filter(user = request.user).order_by("individualsession__sessiontime")  # get queryset for chart
-    for session in chartlabels:
-        labels1.append(session.title)   
-    for each in chartdata:
-        data1vals.append(each.individualsession.session.id)
-    data1vals = set(data1vals) # get unique items
-    data1vals = list(data1vals)
-    for val in range(len(data1vals)):
-        print(val)
-        data1.append(0)
-    for booking in chartdata:
-        for index in range(len(data1vals)):
-            if booking.individualsession.session.id == data1vals[index]:
-                data1[index] += 1
-    data = json.dumps(data1) # return back into a list 
-    labels = json.dumps(labels1)
-    print(data1vals)
-    print(data1)
-    print(labels1)
-    print(labels, data)
     #for loop to get chart vals
     if request.user.profile.is_teacher:
         return redirect("teacherprofile")
@@ -114,9 +94,9 @@ def profile(request):
 
 
 #same as user profile in terms of form however different stuff overall page
+#COMMENTS REQUIRED
 @login_required
 def teacherprofile(request):
-    get_data = get_data()
     if not request.user.profile.is_teacher:
         return redirect("profile")
     u_form = UserUpdateForm(instance=request.user) # pass in current users info to the forms
@@ -142,7 +122,6 @@ def teacherprofile(request):
         # elif statement to separate post reqs below handles delete functionality
         elif 'pk' in request.POST:
             print(request.POST['pk'])
-            print(Booking.objects.all().filter(pk=1))
             Booking.objects.all().filter(pk=request.POST['pk']).delete()
             return redirect('profile')
         

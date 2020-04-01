@@ -1,79 +1,164 @@
 {% extends "Bookings/base.html" %}
 {% load crispy_forms_tags %}
-{% block extrahead %}
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-
-  <!-- XDSoft DateTimePicker -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css" integrity="sha256-DOS9W6NR+NFe1fUhEE0PGKY/fubbUCnOfTje2JMDw3Y=" crossorigin="anonymous" />
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js" integrity="sha256-FEqEelWI3WouFOo2VWP/uJfs1y8KJ++FLh2Lbqc8SJk=" crossorigin="anonymous"></script>
-
+{% load static %}
+{% load crispy_forms_filters %}
+{% block css %}
+<link rel="stylesheet" type="text/css" href="{% static 'Bookings/teacher.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.css">
 {% endblock %}
-
 {% block content %}
-<h1>PROOF THIS IS TEACHER PROFILE INSTEAD</h1>
-<div class = "container content-section">
-    <div class = "row">
-        <div class = "col col-md-4"> 
-            <h1>{{ user.username }}</h1>
-            <img class="img-fluid img-thumbnail" src="{{ user.profile.image.url }}" alt="" height="100" width="100">
-        </div> 
-        <div class = "col">
-        <form method="POST" enctype="multipart/form-data"><!-- enctype is used for images saving-->
-            {% csrf_token %}
-            <fieldset class = 'form-group'>
-                <legend class = "border-bottom mb-4">Profile Information</legend>
-                {{ u_form|crispy }}
-                {{ p_form|crispy }}<!-- we passing in 2 forms so need 2-->
-            </fieldset>
-            <div class = "form-group">
-                <button name = "profileupdateform" class = "btn btn-outline-info" type = "submit">Update</button>
-            </div>
-        </form>
-        </div>
-    </div> 
-    <div class = "container">
-        <h1>Hello</h1> 
-        {% for each in session %}
-        <div class = "row">
-            <p>{{ each }} </p> 
-            {% for item in booking %}
-                {% if item.individualsession.id == each.id %}
-                    <p> {{ item }} </p>
-                    <form method="post">
-                        {% csrf_token %}
-                        <button name = "pk" class = "btn btn-outline-info" type = "submit" value="{{ item.id }}">Remove Booking</button>
-                    </form>
-                {% endif %}    
-            {% endfor %}  
-        </div>  
-        {% endfor %}
-        <div class = "row">
-            <form method="POST"><!-- enctype is used for images saving-->
-                {% csrf_token %}
-                <fieldset class = 'form-group'>
-                    <legend class = "border-bottom mb-4">Schedule Session</legend>
-                    {{ newsession_form|crispy }}
-                    {% if newsession_form.errors %}
-                        {% for field in newsession_form %}
-                            {% for error in field.errors %}
-                            <div class="alert alert-danger">
-                                <strong>{{ error|escape }}</strong>
-                            </div>
-                        {% endfor %}
-                    {% endfor %}
-                    {% for error in newsessionform.non_field_errors %}
-                        <div class="alert alert-danger">
-                            <strong>{{ error|escape }}</strong>
-                        </div>
-                    {% endfor %}
-                    {% endif %}
-                </fieldset>
-                <div class = "form-group">
-                    <button name = "createsession" class = "btn btn-outline-info" type = "submit">Create</button>
-                </div>
-        </div>
+<img class = "wave bg1" src="{% static 'image/profilecorner1.svg' %}" alt="missing">
+<h1 class="toph1">Welcome to your Profile</h1>
+<img class = "bg2" src="{% static 'image/userimage.svg' %}" alt="missing">
+<h1 class="username">{{ user.username }}</h1>
+<div class="circular-portrait "><img src="{{ user.profile.image.url }}" /> </div>
+<div class="optioncontainer">
+    <div class="showSingle items" target="1">
+      <div class="icon-wrapper">
+        <i class="fa fa-pencil"></i>
+      </div>
+      <div class="project-name">
+        <p>Update Profile</p>
+      </div>
     </div>
+    <div class="showSingle items" target="2">
+      <div class="icon-wrapper">
+        <i class="fa fa-desktop"></i>
+      </div>
+      <div class="project-name">
+        <p>Add New Class (change icon)</p>
+      </div>
+    </div>
+    <div class="showSingle items" target="3">
+      <div class="icon-wrapper">
+        <i class="fa fa-area-chart"></i>
+      </div>
+      <div class="project-name">
+        <p>Remove Bookings(graph below)</p>
+      </div>
+    </div>  
 </div>
-{% endblock %}
+<div class = "contentcontainer">
+    <div class="intialDiv">
+    <h1 >Click the options to view</h1>
+    </div>
+    <div class="targetDiv col col-sm-6" id="content1">
+      <form method="POST" enctype="multipart/form-data"><!-- enctype is used for images saving-->
+        {% csrf_token %}
+        <fieldset class = 'form-group'>
+            <legend class = "border-bottom mb-4">Profile Information</legend>
+            {{ u_form|crispy }}
+            {{ p_form|crispy }}<!-- we passing in 2 forms so need 2-->
+        </fieldset>
+        <div class = "form-group">
+            <button name = "profileupdateform" class = "btn btn-outline-info" type = "submit">Update</button>
+        </div>
+    </form>
+    </div>
+    <div class="targetDiv" id="content2">
+
+      <form method="POST"><!-- enctype is used for images saving-->
+        {% csrf_token %}
+        <fieldset class = 'form-group'>
+            <legend class = "border-bottom mb-4">Schedule Session</legend>
+            {{ newsession_form|crispy }}
+            {% if newsession_form.errors %}
+                {% for field in newsession_form %}
+                    {% for error in field.errors %}
+                    <div class="alert alert-danger">
+                        <strong>{{ error|escape }}</strong>
+                    </div>
+                {% endfor %}
+            {% endfor %}
+            {% for error in newsessionform.non_field_errors %}
+                <div class="alert alert-danger">
+                    <strong>{{ error|escape }}</strong>
+                </div>
+            {% endfor %}
+            {% endif %}
+        </fieldset>
+        <div class = "form-group">
+            <button name = "createsession" class = "btn btn-outline-info" type = "submit">Create</button>
+        </div>
+      </form>
+    </div>
+    <div class="targetDiv" id="content3">
+      
+      <h1>proof this works</h1>
+      {% for each in session %}
+      <div class = "row">
+          <!-- <p>{{ each }} </p>  -->
+          {% for item in booking %}
+              {% if item.individualsession.id == each.id %}
+                  <!-- <p> {{ item }} </p> go through individualsession and then all bookings, check if ids match and list them out -->
+                  <form method="post">
+                      {% csrf_token %}
+                      <li><button name = "pk" class = "round red" type = "submit" value="{{ item.id }}">Remove Booking<span class="round"> {{ item }}</span></button></li>                   
+                      <!-- item.id is required in value to remove booking -->
+                  </form>
+              {% endif %}    
+          {% endfor %}  
+      </div>  
+      {% endfor %}  
+             
+    </div>
+
+    <canvas id="myChart"></canvas>
+
+
 <!-- we can use user.username without passing anything in views because user is built in
- button value gives the id of the current booking item and deletes it in the view -->
+ %} button value gives the id of the current booking item and deletes it in the view -->
+{% block js %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+<script type = "text/javascript">
+var endpoint = "../api/data" // {% url "api-data" %} // route to my json data
+var defaultdata = []
+var labels = []
+
+//utilizing ajax to get our json values as python values dont work, instead of parsing its a direct call
+// use these values to make our chart.js nice
+$.ajax({
+  method:"GET",
+  url: endpoint,
+  success: function(data){
+    labels = data.labels
+    defaultdata = data.data
+    console.log(data)
+    $(document).ready(function() {
+    var ctx = document.getElementById('myChart').getContext('2d');
+    var chart = new Chart(ctx, {
+      // The type of chart we want to create
+      type: 'polarArea',
+      
+      // The data for our dataset
+      data: {
+          labels: labels,
+          datasets: [{
+              backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
+              data: defaultdata
+          }]
+      },
+
+      // Configuration options go here
+      options: {
+        title: {
+          display: "true",
+          text: "What are my favourite languages?",
+          position: "top",
+          
+        }
+      }
+  });
+  })
+  },
+  error: function(error_data){
+    console.log("error")
+    console.log(data)
+  }
+})
+
+  </script>
+  <script type=text/javascript src="{% static 'Bookings/jquery.js' %}"></script>
+{% endblock %}
+{% endblock %}
