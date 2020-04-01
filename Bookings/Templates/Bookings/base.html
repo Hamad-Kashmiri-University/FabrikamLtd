@@ -78,7 +78,7 @@
       </div>
     </nav>
   </header>
-  <div class="container">
+  <div id="message", class="container">
     {% if messages %}
     {% for message in messages %}
     <div class="alert alert-{{ message.tags }}">
@@ -91,7 +91,9 @@
   </div>
   
   {% block js %}{% endblock %}
+
 </body>
+
 
 </html>
 
