@@ -246,6 +246,11 @@ html {
   border: 1px dotted black !important;
   margin-left: -300px !important;
 }
+.chart2 {
+  border: 1px dotted black !important;
+  margin-top: 100px !important;
+  position: relative !important;
+}
 
 
 .tbut{

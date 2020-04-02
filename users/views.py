@@ -56,9 +56,37 @@ def get_data(request, *args, **kwargs):
     #make vals list with id for ecah session a person has booked
     #make a data list with 0 for each session booked
     # compare bookng session id with id in list and increment by 1 to get total for each item
+    #BELOW CHART DATA FOR TEACHERP
+    tlabels = []
+    tspaces = []
+    tbooked = []
+    sessionid = []
+    session = IndividualSession.objects.all().filter(session__teacher = request.user) # get sessions which specific teacherteaches
+    bookings = Booking.objects.all()
+    for each in session:
+        label = str(each.session),":",str(each.sessiontime) # contain string for lavel
+        tlabels.append(label) # sessions asscociated with certain teacher
+        sessionid.append(each.id)   #id utilized for bookingcount matching to correct session
+    print(tlabels,sessionid)
+    for each in session:
+        tspaces.append(each.session.spaces) # get max spaces
+    for x in range(len(session)):
+        tbooked.append(0)
+    print(tbooked)
+    for each in bookings:
+        for index in range(len(sessionid)):
+            if each.individualsession.id == sessionid[index]:
+                tbooked[index] +=1
+    print(tbooked)
+
+
+
     data = {
-        "labels": labels1,
-        "data": data1
+        "labels": labels1,   
+        "data": data1,
+        "tlabels": tlabels,
+        "tspaces": tspaces,
+        "tbooked": tbooked
     }
     return JsonResponse(data)
     #we get jsonresponse not htmlresp so we can get json data to use in any page
@@ -104,8 +132,8 @@ def teacherprofile(request):
     newsession_form = CreateSessionForm()
     sessionlist = IndividualSession.objects.all().filter(session__teacher = request.user).order_by('sessiontime', 'id')
     bookinglist = Booking.objects.all().filter(individualsession__session__teacher = request.user).order_by('individualsession')
-    print(bookinglist)
-    print(sessionlist)
+   # print(bookinglist)
+   # print(sessionlist)
     if request.method == "POST": 
         if 'profileupdateform' in request.POST:
             u_form = UserUpdateForm(request.POST, instance=request.user) # pass in current users info to the forms
@@ -121,7 +149,7 @@ def teacherprofile(request):
        
         # elif statement to separate post reqs below handles delete functionality
         elif 'pk' in request.POST:
-            print(request.POST['pk'])
+           #p print(request.POST['pk'])
             Booking.objects.all().filter(pk=request.POST['pk']).delete()
             return redirect('profile')
         
