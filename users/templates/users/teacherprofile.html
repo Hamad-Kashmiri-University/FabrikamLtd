@@ -35,16 +35,16 @@
         <i class="fa fa-area-chart"></i>
       </div>
       <div class="project-name">
-        <p>Remove Bookings(graph below)</p>
+        <p>Remove Bookings</p>
       </div>
     </div>  
 </div>
 <div class = "contentcontainer">
     <div class="intialDiv">
-    <h1 >Click the options to view</h1>
+    <h1 class="options" >Click the options to view</h1>
     </div>
     <div class="targetDiv col col-sm-6" id="content1">
-      <form method="POST" enctype="multipart/form-data"><!-- enctype is used for images saving-->
+      <form method="POST" class="updateform" enctype="multipart/form-data"><!-- enctype is used for images saving-->
         {% csrf_token %}
         <fieldset class = 'form-group'>
             <legend class = "border-bottom mb-4">Profile Information</legend>
@@ -58,7 +58,7 @@
     </div>
     <div class="targetDiv" id="content2">
 
-      <form method="POST"><!-- enctype is used for images saving-->
+      <form method="POST" class = "sessionform"><!-- enctype is used for images saving-->
         {% csrf_token %}
         <fieldset class = 'form-group'>
             <legend class = "border-bottom mb-4">Schedule Session</legend>
@@ -85,25 +85,29 @@
     </div>
     <div class="targetDiv" id="content3">
       
-      <h1>proof this works</h1>
       {% for each in session %}
       <div class = "row">
+          <h5>{{ each.session.title }} at {{ each.sessiontime|date:'Y-m-d H:i' }}</h5>
+      </div>
+      <div class = "row ">
           <!-- <p>{{ each }} </p>  -->
           {% for item in booking %}
               {% if item.individualsession.id == each.id %}
                   <!-- <p> {{ item }} </p> go through individualsession and then all bookings, check if ids match and list them out -->
+                  <div class= "col">
                   <form method="post">
                       {% csrf_token %}
-                      <li><button name = "pk" class = "round red" type = "submit" value="{{ item.id }}">Remove Booking<span class="round"> {{ item }}</span></button></li>                   
+                      <button name = "pk" class = "b" type = "submit" value="{{ item.id }}">{{ item.user }} AT {{ item.individualsession.sessiontime }}</button>            
                       <!-- item.id is required in value to remove booking -->
                   </form>
+                </div>
               {% endif %}    
           {% endfor %}  
-      </div>  
+        </div>
+       
       {% endfor %}  
-             
+    </div>       
     </div>
-</div>
 
 <canvas id="myChart1" class = "chart2"></canvas>
 
