@@ -2,19 +2,79 @@
 {% load static %}
 {% block css %}
 <link rel="stylesheet" type="text/css" href="{% static 'Bookings/main.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'Bookings/bookingtable.css' %}">
+
 {% endblock css %}
 {% block content %}
 <h1>Booking Home</h1>
-{% for class in session %}
-<h1><a href="{% url 'details' class.id %}">{{ class.title}}</a></h1>
-<p>Skill Level: {{ class.skill }}</p>
-<p>Company {{ class.company }}</p>
-<p>Empty Spaces: {{ class.spaces }}</p>
-{% endfor %}
+    <table class="table-fluid">
+    <thead>
+        <tr>
+          <th>Company</th>
+          <th>Topic</th>
+          <th>Skill</th>        
+          <th>Spaces</th>
+        </div>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+    
+    {% for class in session %}
+    <div class= "container">
+        <table class="table table-striped">
+            <tbody>
+              <tr>
+              <div class = "col">
+                <td>{{ class.company }}</td>
+              </div>
+              <div class = "col">
+                <td>{{ class.title}}</td>
+              </div>
+                <td>{{ class.skill }}</td>
+              <div class = "col">
+                <td>{{ class.spaces }}</td>
+              </div>
+                <td>
+          <div class = "col">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#mymodal{{ class.id }}">
+            More info
+          </button> <div class="modal" id="mymodal{{ class.id }}">
+            <div class="modal-dialog">
+              <div class="modal-content">
+              
+                <div class="modal-header">
+                  <h4 class="modal-title">More Info</h4>
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                
+                <div class="modal-body">
+                  {{ class.description }}
+                </div>
+        
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+                
+              </div>
+            </div>
+          </div>
+          
+        </div></td>
+        <td><a href="{% url 'details' class.id %}" class="btn btn-primary ss">Book</a></td>
+              </tr>
+              
+             
+            </tbody>
+          </table>
+        </div>
+      
+    {% endfor %}
+
 {% if is_paginated %}
 
 {% if page_obj.has_previous %}
-<div class="row">
+<div class="row dd">
     <div class="pagination">
         <a class="page-link" href="?page=1">First</a>
         <a class="page-link previous text-left" href="?page={{ page_obj.previous_page_number }}">Previous</a>
