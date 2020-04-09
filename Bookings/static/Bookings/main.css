@@ -12,6 +12,11 @@ html {
   font-family: CircularBOOK, sans-serif;
 }
 
+.alert-SUCCESS {
+  position: fixed !important;
+  z-index: 7000;
+}
+
 .content-section {
   background: #ffffff;
   padding: 10px 20px;
@@ -23,16 +28,7 @@ html {
 
 
 /*----------about page----------*/
-u {
-  color: blueviolet;
-}
 
-
-body {
-
-  background-color: rgb(176, 141, 212);
-
-}
 
 header {
   padding: 0 5%;
@@ -80,6 +76,45 @@ body {
   margin: 0 auto;
   overflow-x: hidden;
 }
+
+.containerpurple {
+  background-color: #622ccf;
+  width: 100%;
+}
+
+
+/*----------team----------*/
+
+.team {
+  text-align: center;
+  margin: 200px;
+  padding: 0 5%;
+  background-image: url(/public/image/Rectangle\ 555.png);
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+
+.team h1 {
+  width: 50%;
+  margin: 0 auto 50px auto;
+}
+
+.members {
+  display: flex;
+  justify-content: center;
+}
+
+.person {
+  margin: 0 30px;
+  color: #622CCF;
+
+}
+
+.person h3 {
+  margin-top: 20px;
+}
+
 
 /*----------login bg----------*/
 
@@ -240,4 +275,39 @@ a:hover {
 .copyright-menu li {
   display: inline-block;
   padding-left: 20px;
+}
+
+
+/*----------footer----------*/
+
+
+#footer {
+  position: fixed !important;
+  width: 100% !important;
+  bottom: 0 !important;
+  left: 0 !important;
+  height: 20px !important;
+
+}
+
+.footer p,
+.footerPages {
+  display: inline-block;
+}
+
+.footerPages {
+  float: right;
+}
+
+.footerPages a {
+  text-decoration: none;
+  font-weight: 300;
+  color: #4A026D;
+  margin-left: 30px;
+  font-weight: 600;
+}
+
+.previous {
+  width: 90px !important;
+
 }

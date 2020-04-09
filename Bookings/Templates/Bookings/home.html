@@ -2,37 +2,105 @@
 {% load static %}
 {% block css %}
 <link rel="stylesheet" type="text/css" href="{% static 'Bookings/main.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'Bookings/bookingtable.css' %}">
+
 {% endblock css %}
 {% block content %}
-    <h1>Booking Home</h1>
+<h1>Booking Home</h1>
+    <table class="table-fluid">
+    <thead>
+        <tr>
+          <th>Company</th>
+          <th>Topic</th>
+          <th>Skill</th>        
+          <th>Spaces</th>
+        </div>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+    
     {% for class in session %}
-        <h1><a href = "{% url 'details' class.id %}">{{ class.title}}</a></h1>
-        <p>Skill Level: {{ class.skill }}</p>
-        <p>Company {{ class.company }}</p>
-        <p>Empty Spaces: {{ class.spaces }}</p>
+    <div class= "container">
+        <table class="table table-striped">
+            <tbody>
+              <tr>
+              <div class = "col">
+                <td>{{ class.company }}</td>
+              </div>
+              <div class = "col">
+                <td>{{ class.title}}</td>
+              </div>
+                <td>{{ class.skill }}</td>
+              <div class = "col">
+                <td>{{ class.spaces }}</td>
+              </div>
+                <td>
+          <div class = "col">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#mymodal{{ class.id }}">
+            More info
+          </button> <div class="modal" id="mymodal{{ class.id }}">
+            <div class="modal-dialog">
+              <div class="modal-content">
+              
+                <div class="modal-header">
+                  <h4 class="modal-title">More Info</h4>
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                
+                <div class="modal-body">
+                  {{ class.description }}
+                </div>
+        
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+                
+              </div>
+            </div>
+          </div>
+          
+        </div></td>
+        <td><a href="{% url 'details' class.id %}" class="btn btn-primary ss">Book</a></td>
+              </tr>
+              
+             
+            </tbody>
+          </table>
+        </div>
+      
     {% endfor %}
 
-    {% if is_paginated %}
-        
-        {% if page_obj.has_previous %}
-            <a class  = "btn btn-outline-info mb-4" href="?page=1">First</a>
-            <a class  = "btn btn-outline-info mb-4" href="?page={{ page_obj.previous_page_number }}">Previous</a>
-        {% endif %}
+{% if is_paginated %}
 
-        {% for num in page_obj.paginator.page_range %}
+{% if page_obj.has_previous %}
+<div class="row dd">
+    <div class="pagination">
+        <a class="page-link" href="?page=1">First</a>
+        <a class="page-link previous text-left" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+        {% endif %}
+        <div class="row">
+            {% for num in page_obj.paginator.page_range %}
             {% if page_obj.number == num %}
-                <a class="btn btn-info mb-4"  href="?page={{ num }}">{{ num }}</a>
-            {% elif num > page_obj.number|add:'-2' and num < page_obj.number|add:'2' %}
-                <a class="btn btn-outline-info mb-4"  href="?page={{ num }}">{{ num }}</a>
 
+            <a class="page-link" href="?page={{ num }}">{{ num }}</a>
+            {% elif num > page_obj.number|add:'-2' and num < page_obj.number|add:'2' %}
+            <a class="page-link" href="?page={{ num }}">{{ num }}</a>
             {% endif %}
-       
-        {% endfor %}
-        {% if page_obj.has_next %}
-        <a class  = "btn btn-outline-info mb-4" href="?page={{ page_obj.next_page_number }}">Next</a>
-        <a class  = "btn btn-outline-info mb-4" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
-        {% endif %}
-    
-     {% endif %}
+
+            {% endfor %}
+            {% if page_obj.has_next %}
+
+            <a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a>
+
+            <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
+
+        </div>
+    </div>
+</div>
+
+{% endif %}
+
+{% endif %}
 <!-- above handles pagination, we say if previous page show first and previous, then show pages around current page by 2 using for loop, then show next and last if page has next -->
 {% endblock content %}
