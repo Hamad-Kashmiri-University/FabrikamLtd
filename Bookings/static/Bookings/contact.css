@@ -14,6 +14,7 @@ h1 {
     text-transform: uppercase;
     font-size: 2.9rem;
 }
+
 h2 {
     display: block;
     margin-left: auto;
@@ -26,6 +27,16 @@ h2 {
     color: #622CCF;
     text-transform: uppercase;
     font-size: 2rem;
+}
+
+p {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    line-height: 62px;
+    position: relative;
+    z-index: 0;
 }
 
 * {
