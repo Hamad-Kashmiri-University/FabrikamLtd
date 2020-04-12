@@ -18,8 +18,16 @@
                             <h2 class="title2 text-center">REGISTER</h2>
                         </div>
                         {{ form|crispy }}
+                        <input type="checkbox" id="Terms and Conditions" name="Terms" value="Y/N"> I accept FTT's Terms and Conditions. </input>
+                        <label for="vehicle1"> Click to view the </label>
+                        <a href="">Terms and Conditions</a>
+                        <input type="checkbox" id="Privacy Policy" name="Policy" value="Y/N"> I accept FTT's Privacy Policy. </input>
+                        <label for="vehicle1"> Click to view the </label>
+                        <a href="">Privacy Policy</a>
+                        <br>
                         <a>Have an account?<a href="{% url 'login' %}">Sign In</a></a>
                         <input type="submit" class="btn color" value="Login">
+                        
                 </div>
         </div>
     </div>
