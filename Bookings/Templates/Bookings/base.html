@@ -89,10 +89,35 @@
     {% block content %}{% endblock %}
   </div>
 
-  {% block js %}{% endblock %}
-
+  <footer>
+    <div class="copyright">
+        <div class="container col-md-6">
+            <div class="row">
+                <span>Copyright © 2019, All Right Reserved to Jonny Reece</span>
+                <!-- End Col -->
+                <div class="col-md-6">
+                    <div class="copyright-menu">
+                        <ul>
+                            <li>
+                                <a href="#">Home</a>
+                            </li>
+                            <li>
+                              <a href="{% url 'Terms' %}">Terms and Conditions </a>
+                            </li>
+                            <li>
+                              <a href="{% url 'Privacy' %}">Privacy Policy</a>
+                            </li>
+                            <li>
+                                <a href="#">Contact</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  </footer>
 </body>
-
 
 
 </html>
