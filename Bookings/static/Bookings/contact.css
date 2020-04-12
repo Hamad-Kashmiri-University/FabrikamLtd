@@ -1,43 +1,7 @@
 
 /*----------global----------*/
 
-h1 {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    text-align: center;
-    line-height: 62px;
-    position: relative;
-    z-index: 0;
-    padding-bottom: 20px;
-    color: #622CCF;
-    text-transform: uppercase;
-    font-size: 2.9rem;
-}
 
-h2 {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    text-align: center;
-    line-height: 62px;
-    position: relative;
-    z-index: 0;
-    padding-bottom: 20px;
-    color: #622CCF;
-    text-transform: uppercase;
-    font-size: 2rem;
-}
-
-p {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    text-align: center;
-    line-height: 62px;
-    position: relative;
-    z-index: 0;
-}
 
 * {
     margin: 0;
