@@ -20,11 +20,11 @@
                         {{ form|crispy }}
                         <input type="checkbox" id="Terms and Conditions" name="Terms" value="Y/N"> I accept FTT's Terms and Conditions. </input>
                        
-                        <a href="">Terms and Conditions</a>
+                        <a href="{% url 'Terms' %}">Terms and Conditions</a>
                         <input type="checkbox" id="Privacy Policy" name="Policy" value="Y/N"> I accept FTT's Privacy Policy. </input>
-                        <a href="">Privacy Policy</a>
+                        <a href="{% url 'Privacy' %}">Privacy Policy</a></a>
                         <br>
-                        <a>Have an account?<a href="{% url 'login' %}">Sign In</a></a>
+                        <a>Have an account?<a href="{% url 'login' %}">Sign in</a>
                         <input type="submit" class="btn color" value="Login">
                         
                 </div>
